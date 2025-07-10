@@ -1,0 +1,40 @@
+# Redirects for Single Page Application
+/*    /index.html   200
+
+# SEO-friendly redirects for common pest control searches
+/termite-control    /#services    301
+/cockroach-extermination    /#services    301
+/ant-control    /#services    301
+/rodent-control    /#services    301
+/pest-control-cavite    /#hero    301
+/pest-control-dasmarinas    /#hero    301
+/free-inspection    /#contact    301
+/contact-us    /#contact    301
+/about-us    /#about    301
+
+# Location-based redirects
+/muntinlupa    /#contact    301
+/paranaque    /#contact    301
+/las-pinas    /#contact    301
+/cavite    /#hero    301
+/dasmarinas    /#hero    301
+
+# Service-specific redirects
+/termite    /#services    301
+/cockroach    /#services    301
+/ants    /#services    301
+/rats    /#services    301
+/mice    /#services    301
+/mosquito    /#services    301
+
+# Social media redirects
+/facebook    https://www.facebook.com/profile.php?id=100063857540013    301
+/fb    https://www.facebook.com/profile.php?id=100063857540013    301
+/tiktok    https://tiktok.com/@abaddon_2020    301
+/tt    https://tiktok.com/@abaddon_2020    301
+
+# Location and maps redirects
+/maps    https://www.google.com/maps?q=14.344438363320867,120.9524173725775    301
+/location    https://www.google.com/maps?q=14.344438363320867,120.9524173725775    301
+/directions    https://www.google.com/maps?q=14.344438363320867,120.9524173725775    301
+/waze    https://waze.com/ul?q=14.344438363320867,120.9524173725775    301
