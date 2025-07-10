@@ -6,103 +6,131 @@
 :root {
   /* === PRIMARY BRAND COLORS === */
   /* Gold/Bronze colors from logo */
-  --color-primary-gold: #D4AF37;        /* Main gold from logo text */
-  --color-primary-bronze: #CD7F32;      /* Bronze accent from logo */
-  --color-primary-gold-light: #F4E4BC;  /* Light gold for backgrounds */
-  --color-primary-gold-dark: #B8941F;   /* Dark gold for hover states */
-  
+  --color-primary-gold: #d4af37; /* Main gold from logo text */
+  --color-primary-bronze: #cd7f32; /* Bronze accent from logo */
+  --color-primary-gold-light: #f4e4bc; /* Light gold for backgrounds */
+  --color-primary-gold-dark: #b8941f; /* Dark gold for hover states */
+
   /* === SECONDARY COLORS === */
   /* Dark colors from logo shield */
-  --color-secondary-black: #1A1A1A;     /* Deep black from logo background */
-  --color-secondary-charcoal: #2D2D2D;  /* Charcoal for sections */
-  --color-secondary-gray: #808080;      /* Medium gray from logo elements */
-  --color-secondary-light-gray: #C0C0C0; /* Light gray from logo highlights */
-  
+  --color-secondary-black: #1a1a1a; /* Deep black from logo background */
+  --color-secondary-charcoal: #2d2d2d; /* Charcoal for sections */
+  --color-secondary-gray: #808080; /* Medium gray from logo elements */
+  --color-secondary-light-gray: #c0c0c0; /* Light gray from logo highlights */
+
   /* === ACCENT COLORS === */
   /* Professional pest control colors */
-  --color-accent-white: #FFFFFF;        /* Pure white for contrast */
-  --color-accent-cream: #FFF8DC;        /* Warm cream for backgrounds */
-  --color-accent-success: #28A745;      /* Green for success messages */
-  --color-accent-warning: #FFC107;      /* Yellow for warnings */
-  --color-accent-danger: #DC3545;       /* Red for urgent pest alerts */
-  
+  --color-accent-white: #ffffff; /* Pure white for contrast */
+  --color-accent-cream: #fff8dc; /* Warm cream for backgrounds */
+  --color-accent-success: #28a745; /* Green for success messages */
+  --color-accent-warning: #ffc107; /* Yellow for warnings */
+  --color-accent-danger: #dc3545; /* Red for urgent pest alerts */
+
   /* === TEXT COLORS === */
-  --color-text-primary: #1A1A1A;        /* Main text color */
-  --color-text-secondary: #2D2D2D;      /* Secondary text */
-  --color-text-muted: #808080;          /* Muted text */
-  --color-text-light: #FFFFFF;          /* Light text on dark backgrounds */
-  --color-text-gold: #D4AF37;           /* Gold text for highlights */
-  
+  --color-text-primary: #1a1a1a; /* Main text color */
+  --color-text-secondary: #2d2d2d; /* Secondary text */
+  --color-text-muted: #808080; /* Muted text */
+  --color-text-light: #ffffff; /* Light text on dark backgrounds */
+  --color-text-gold: #d4af37; /* Gold text for highlights */
+
   /* === BACKGROUND COLORS === */
-  --color-bg-primary: #FFFFFF;          /* Main background */
-  --color-bg-secondary: #FFF8DC;        /* Secondary background */
-  --color-bg-dark: #1A1A1A;             /* Dark sections */
-  --color-bg-gold: #F4E4BC;             /* Gold background sections */
+  --color-bg-primary: #ffffff; /* Main background */
+  --color-bg-secondary: #fff8dc; /* Secondary background */
+  --color-bg-dark: #1a1a1a; /* Dark sections */
+  --color-bg-gold: #f4e4bc; /* Gold background sections */
   --color-bg-overlay: rgba(26, 26, 26, 0.8); /* Dark overlay */
-  
+
   /* === BORDER COLORS === */
-  --color-border-primary: #D4AF37;      /* Gold borders */
-  --color-border-secondary: #C0C0C0;    /* Light gray borders */
-  --color-border-dark: #2D2D2D;         /* Dark borders */
-  
+  --color-border-primary: #d4af37; /* Gold borders */
+  --color-border-secondary: #c0c0c0; /* Light gray borders */
+  --color-border-dark: #2d2d2d; /* Dark borders */
+
   /* === BUTTON COLORS === */
-  --color-btn-primary-bg: #D4AF37;      /* Primary button background */
-  --color-btn-primary-hover: #B8941F;   /* Primary button hover */
-  --color-btn-primary-text: #1A1A1A;    /* Primary button text */
-  
-  --color-btn-secondary-bg: #2D2D2D;    /* Secondary button background */
-  --color-btn-secondary-hover: #1A1A1A; /* Secondary button hover */
-  --color-btn-secondary-text: #FFFFFF;  /* Secondary button text */
-  
+  --color-btn-primary-bg: #d4af37; /* Primary button background */
+  --color-btn-primary-hover: #b8941f; /* Primary button hover */
+  --color-btn-primary-text: #1a1a1a; /* Primary button text */
+
+  --color-btn-secondary-bg: #2d2d2d; /* Secondary button background */
+  --color-btn-secondary-hover: #1a1a1a; /* Secondary button hover */
+  --color-btn-secondary-text: #ffffff; /* Secondary button text */
+
   /* === GRADIENT COLORS === */
-  --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #CD7F32 100%);
-  --gradient-dark: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%);
-  --gradient-hero: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(212, 175, 55, 0.1) 100%);
-  
+  --gradient-gold: linear-gradient(135deg, #d4af37 0%, #cd7f32 100%);
+  --gradient-dark: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  --gradient-hero: linear-gradient(
+    135deg,
+    rgba(26, 26, 26, 0.8) 0%,
+    rgba(212, 175, 55, 0.1) 100%
+  );
+
   /* === SHADOW COLORS === */
   --shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
   --shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.15);
   --shadow-heavy: 0 8px 16px rgba(0, 0, 0, 0.2);
   --shadow-gold: 0 4px 8px rgba(212, 175, 55, 0.3);
-  
+
   /* === TYPOGRAPHY SCALE === */
-  --font-size-xs: 0.75rem;    /* 12px */
-  --font-size-sm: 0.875rem;   /* 14px */
-  --font-size-base: 1rem;     /* 16px */
-  --font-size-lg: 1.125rem;   /* 18px */
-  --font-size-xl: 1.25rem;    /* 20px */
-  --font-size-2xl: 1.5rem;    /* 24px */
-  --font-size-3xl: 1.875rem;  /* 30px */
-  --font-size-4xl: 2.25rem;   /* 36px */
-  --font-size-5xl: 3rem;      /* 48px */
-  
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem; /* 36px */
+  --font-size-5xl: 3rem; /* 48px */
+
   /* === SPACING SCALE === */
-  --spacing-xs: 0.25rem;   /* 4px */
-  --spacing-sm: 0.5rem;    /* 8px */
-  --spacing-md: 1rem;      /* 16px */
-  --spacing-lg: 1.5rem;    /* 24px */
-  --spacing-xl: 2rem;      /* 32px */
-  --spacing-2xl: 3rem;     /* 48px */
-  --spacing-3xl: 4rem;     /* 64px */
-  
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem; /* 8px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 1.5rem; /* 24px */
+  --spacing-xl: 2rem; /* 32px */
+  --spacing-2xl: 3rem; /* 48px */
+  --spacing-3xl: 4rem; /* 64px */
+
   /* === BORDER RADIUS === */
-  --radius-sm: 0.25rem;    /* 4px */
-  --radius-md: 0.5rem;     /* 8px */
-  --radius-lg: 0.75rem;    /* 12px */
-  --radius-xl: 1rem;       /* 16px */
-  --radius-full: 9999px;   /* Full rounded */
-  
+  --radius-sm: 0.25rem; /* 4px */
+  --radius-md: 0.5rem; /* 8px */
+  --radius-lg: 0.75rem; /* 12px */
+  --radius-xl: 1rem; /* 16px */
+  --radius-full: 9999px; /* Full rounded */
+
   /* === TRANSITIONS === */
   --transition-fast: 0.15s ease-in-out;
   --transition-normal: 0.3s ease-in-out;
   --transition-slow: 0.5s ease-in-out;
-  
+
   /* === BREAKPOINTS (for reference in media queries) === */
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
   --breakpoint-2xl: 1400px;
+
+  /* === TYPOGRAPHY === */
+  /* Font Family */
+  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
+
+  /* Letter Spacing */
+  --letter-spacing-base: 1px;
+  --letter-spacing-tight: 0.5px;
+  --letter-spacing-wide: 1.5px;
+  --letter-spacing-wider: 2px;
+
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
 }
 
 /* === MOBILE-FIRST MEDIA QUERY HELPERS === */

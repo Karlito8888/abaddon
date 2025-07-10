@@ -25,13 +25,21 @@
 }
 
 .hero__title {
+  font-family: var(--font-primary);
   font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-extrabold);
+  letter-spacing: var(--letter-spacing-base);
+  line-height: var(--line-height-tight);
   margin-bottom: var(--spacing-md);
   color: var(--color-primary-gold);
 }
 
 .hero__subtitle {
+  font-family: var(--font-primary);
   font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-normal);
+  letter-spacing: var(--letter-spacing-base);
+  line-height: var(--line-height-normal);
   margin-bottom: var(--spacing-lg);
   max-width: 600px;
   margin-left: auto;
