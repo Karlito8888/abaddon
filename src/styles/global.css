@@ -5,7 +5,6 @@
 
 /* Import CSS Variables */
 @import "./variables.css";
-@import "./typography.css";
 
 /* === RESET & BASE STYLES === */
 * {
@@ -37,51 +36,7 @@ body {
 }
 
 /* === TYPOGRAPHY === */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: var(--spacing-md);
-  color: var(--color-text-primary);
-}
-
-h1 {
-  font-size: var(--font-size-3xl);
-  color: var(--color-primary-gold);
-}
-
-h2 {
-  font-size: var(--font-size-2xl);
-  color: var(--color-text-primary);
-}
-
-h3 {
-  font-size: var(--font-size-xl);
-}
-
-h4 {
-  font-size: var(--font-size-lg);
-}
-
-p {
-  margin-bottom: var(--spacing-md);
-  line-height: 1.7;
-}
-
-a {
-  color: var(--color-primary-gold);
-  text-decoration: none;
-  transition: var(--transition-normal);
-}
-
-a:hover {
-  color: var(--color-primary-gold-dark);
-  text-decoration: underline;
-}
+/* Typography styles are defined in typography.css */
 
 /* === BUTTONS === */
 .btn {

@@ -1,0 +1,69 @@
+{
+  "lastUpdated": "2024-01-16T18:00:00Z",
+  "mediaItems": [
+    {
+      "id": "fb_001",
+      "imagePath": "/media/facebook/abaddon-1.jpg"
+    },
+    {
+      "id": "fb_002",
+      "imagePath": "/media/facebook/abaddon-2.jpg"
+    },
+    {
+      "id": "fb_003",
+      "imagePath": "/media/facebook/abaddon-3.jpg"
+    },
+    {
+      "id": "fb_004",
+      "imagePath": "/media/facebook/abaddon-4.jpg"
+    },
+    {
+      "id": "fb_005",
+      "imagePath": "/media/facebook/abaddon-5.jpg"
+    },
+    {
+      "id": "fb_006",
+      "imagePath": "/media/facebook/abaddon-6.jpg"
+    },
+    {
+      "id": "fb_007",
+      "imagePath": "/media/facebook/abaddon-7.jpg"
+    },
+    {
+      "id": "fb_008",
+      "imagePath": "/media/facebook/abaddon-8.jpg"
+    },
+    {
+      "id": "tt_001",
+      "videoPath": "/media/tiktok/vid-1.mp4"
+    },
+    {
+      "id": "tt_002",
+      "videoPath": "/media/tiktok/vid-2.mp4"
+    },
+    {
+      "id": "tt_003",
+      "videoPath": "/media/tiktok/vid-3.mp4"
+    },
+    {
+      "id": "tt_004",
+      "videoPath": "/media/tiktok/vid-4.mp4"
+    },
+    {
+      "id": "tt_005",
+      "videoPath": "/media/tiktok/vid-5.mp4"
+    },
+    {
+      "id": "tt_006",
+      "videoPath": "/media/tiktok/vid-6.mp4"
+    },
+    {
+      "id": "tt_007",
+      "videoPath": "/media/tiktok/vid-7.mp4"
+    },
+    {
+      "id": "tt_008",
+      "videoPath": "/media/tiktok/vid-8.mp4"
+    }
+  ]
+}

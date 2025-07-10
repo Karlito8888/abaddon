@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="currentColor">
+  <!-- Termite body -->
+  <ellipse cx="32" cy="40" rx="8" ry="16" fill="#8B4513"/>
+
+  <!-- Termite head -->
+  <circle cx="32" cy="20" r="6" fill="#A0522D"/>
+
+  <!-- Antennae -->
+  <path d="M26 16 Q20 12 18 8" stroke="currentColor" stroke-width="2" fill="none"/>
+  <path d="M38 16 Q44 12 46 8" stroke="currentColor" stroke-width="2" fill="none"/>
+
+  <!-- Eyes -->
+  <circle cx="29" cy="18" r="1.5" fill="#000"/>
+  <circle cx="35" cy="18" r="1.5" fill="#000"/>
+
+  <!-- Legs -->
+  <path d="M24 28 L18 32" stroke="currentColor" stroke-width="2"/>
+  <path d="M40 28 L46 32" stroke="currentColor" stroke-width="2"/>
+  <path d="M24 36 L18 40" stroke="currentColor" stroke-width="2"/>
+  <path d="M40 36 L46 40" stroke="currentColor" stroke-width="2"/>
+  <path d="M24 44 L18 48" stroke="currentColor" stroke-width="2"/>
+  <path d="M40 44 L46 48" stroke="currentColor" stroke-width="2"/>
+
+  <!-- Wings -->
+  <ellipse cx="28" cy="30" rx="4" ry="8" fill="rgba(255,255,255,0.3)" transform="rotate(-15 28 30)"/>
+  <ellipse cx="36" cy="30" rx="4" ry="8" fill="rgba(255,255,255,0.3)" transform="rotate(15 36 30)"/>
+</svg>

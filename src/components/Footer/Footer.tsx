@@ -2,6 +2,12 @@ import React from "react";
 import "./Footer.css";
 import { navLinks } from "../Header/Header";
 
+// Import social media icons
+import whatsappIcon from "../../assets/images/whatsapp.png";
+import viberIcon from "../../assets/images/viber.png";
+import facebookIcon from "../../assets/images/facebook.png";
+import tiktokIcon from "../../assets/images/tiktok.png";
+
 const Footer = () => {
   return (
     <footer className="footer">
@@ -29,10 +35,15 @@ const Footer = () => {
             <h3 className="footer__col-title">Our Services</h3>
             <ul className="footer__services">
               <li>Termite Control & Treatment</li>
-              <li>Cockroach Extermination</li>
-              <li>Ant Control Services</li>
-              <li>Rodent Control & Prevention</li>
+              <li>Cockroach Control</li>
+              <li>Ants Control</li>
+              <li>Rats & Rodents Control</li>
+              <li>Flies Control</li>
+              <li>Bees Control</li>
               <li>Mosquito Control</li>
+              <li>Bed Bugs Control</li>
+              <li>Flea & Tick Control</li>
+              <li>Disinfection Services</li>
               <li>FREE Pest Inspection</li>
             </ul>
           </div>
@@ -41,7 +52,7 @@ const Footer = () => {
             <p>
               <strong>Business Address:</strong>
             </p>
-            <p>Garden Grove Village, Salitran</p>
+            <p>Garden Grove Village, Salitran IV</p>
             <p>Dasmariñas, Cavite 4114</p>
             <p>
               <strong>Phone 1:</strong>{" "}
@@ -53,11 +64,11 @@ const Footer = () => {
             </p>
             <p>
               <strong>Email:</strong>{" "}
-              <a href="mailto:jyabaddonpco@gmail.com">jyabaddonpco@gmail.com</a>
+              <a href="mailto:abaddonpco@gmail.com">abaddonpco@gmail.com</a>
             </p>
             <p>
               <strong>Service Areas:</strong> Salitran, Dasmariñas, Muntinlupa,
-              Parañaque
+              Parañaque, Las Piñas
             </p>
             <p>
               <a
@@ -76,35 +87,59 @@ const Footer = () => {
                 href="https://www.facebook.com/profile.php?id=100063857540013"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="footer__social-link"
               >
-                📘 Facebook (583+ Followers)
+                <img
+                  src={facebookIcon}
+                  alt="Facebook"
+                  className="footer__social-icon"
+                />
+                Facebook
               </a>
               <a
                 href="https://tiktok.com/@abaddon_2020"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="footer__social-link"
               >
-                🎵 TikTok @abaddon_2020
+                <img
+                  src={tiktokIcon}
+                  alt="TikTok"
+                  className="footer__social-icon"
+                />
+                TikTok
               </a>
               <a
                 href="https://wa.me/639175842100"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="footer__social-link"
               >
-                💬 WhatsApp Business
+                <img
+                  src={whatsappIcon}
+                  alt="WhatsApp"
+                  className="footer__social-icon"
+                />
+                WhatsApp Business
               </a>
               <a
                 href="viber://chat?number=639175842100"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="footer__social-link"
               >
-                📞 Viber
+                <img
+                  src={viberIcon}
+                  alt="Viber"
+                  className="footer__social-icon"
+                />
+                Viber
               </a>
             </div>
             <div className="footer__credentials">
               <p>✓ FDA Licensed PCO</p>
               <p>✓ IPM Certified</p>
-              <p>✓ 583+ Happy Customers</p>
+              {/* <p>✓ 583+ Happy Customers</p> */}
               <p>✓ FREE Inspection</p>
             </div>
           </div>

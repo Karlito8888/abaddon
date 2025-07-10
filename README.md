@@ -95,7 +95,7 @@ public/
 
 - **Phone 1:** +63 917 584 2100
 - **Phone 2:** +63 917 509 0485
-- **Email:** jyabaddonpco@gmail.com
+- **Email:** abaddonpco@gmail.com
 - **Address:** Garden Grove Village, Salitran, Dasmariñas, 4114 Cavite
 - **Coordinates:** 14.344438363320867, 120.9524173725775
 - **Google Maps:** https://www.google.com/maps?q=14.344438363320867,120.9524173725775

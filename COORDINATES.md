@@ -130,7 +130,7 @@ Si vous avez besoin d'aide pour nous trouver :
 - **Téléphone 2 :** +63 917 509 0485
 - **WhatsApp 1 :** https://wa.me/639175842100
 - **WhatsApp 2 :** https://wa.me/639175090485
-- **Email :** jyabaddonpco@gmail.com
+- **Email :** abaddonpco@gmail.com
 
 ## 🎯 **SEO Local**
 

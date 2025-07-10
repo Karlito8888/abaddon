@@ -44,9 +44,9 @@ const Header = () => {
               </li>
             ))}
           </ul>
-          <a href="#contact" className="btn btn-primary header__cta--mobile">
+          {/* <a href="#contact" className="btn btn-primary header__cta--mobile">
             FREE Inspection
-          </a>
+          </a> */}
         </nav>
 
         <a href="#contact" className="btn btn-primary header__cta--desktop">

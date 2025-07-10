@@ -3,9 +3,15 @@
 
 # SEO-friendly redirects for common pest control searches
 /termite-control    /#services    301
-/cockroach-extermination    /#services    301
-/ant-control    /#services    301
-/rodent-control    /#services    301
+/cockroach-control    /#services    301
+/ants-control    /#services    301
+/rats-rodents-control    /#services    301
+/flies-control    /#services    301
+/bees-control    /#services    301
+/mosquito-control    /#services    301
+/bed-bugs-control    /#services    301
+/flea-tick-control    /#services    301
+/disinfection-services    /#services    301
 /pest-control-cavite    /#hero    301
 /pest-control-dasmarinas    /#hero    301
 /free-inspection    /#contact    301

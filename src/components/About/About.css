@@ -16,9 +16,33 @@
   margin-bottom: var(--spacing-md);
 }
 
-@media (min-width: 768px) {
+/* FDA Certification Image */
+.about__fda-certification {
+  margin-top: var(--spacing-lg);
+  text-align: center;
+}
+
+.about__fda-image {
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-light);
+  transition: var(--transition-normal);
+}
+
+.about__fda-image:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-medium);
+}
+
+@media (min-width: 1100px) {
   .about__grid {
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-xl);
+  }
+
+  .about__fda-image {
+    max-width: 250px;
   }
 }

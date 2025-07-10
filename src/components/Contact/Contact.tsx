@@ -1,97 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Contact.css";
 
+// Import social media icons
+import whatsappIcon from "../../assets/images/whatsapp.png";
+import viberIcon from "../../assets/images/viber.png";
+import facebookIcon from "../../assets/images/facebook.png";
+import tiktokIcon from "../../assets/images/tiktok.png";
+
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Basic validation
-    if (formData.name && formData.email && formData.message) {
-      console.log("Form submitted:", formData);
-      // Here you would typically send the data to a server
-      alert("Thank you for your message! We will get back to you shortly.");
-      setFormData({ name: "", email: "", phone: "", message: "" });
-    } else {
-      alert("Please fill out all required fields.");
-    }
-  };
-
   return (
     <section id="contact" className="contact section">
       <div className="container">
-        <h2 className="section-title text-center">
-          Contact Abaddon Pest Control - FREE Inspection
-        </h2>
+        <h2 className="section-title text-center">Contact Us</h2>
         <p className="contact__intro text-center">
-          Get your <strong>FREE pest inspection</strong> today! FDA-licensed
-          pest control services in Dasmariñas, Cavite and Metro Manila. Call,
-          WhatsApp, or Viber us now.
+          Get your <strong>FREE pest inspection</strong> today !
+          {/* <br /> We offer
+          FDA-licensed pest control services in Dasmariñas, Cavite and Metro
+          Manila.
+          <br />
+          Call, WhatsApp, or Viber us now. */}
         </p>
         <div className="contact__grid">
-          <div className="contact__form-container">
-            <form className="contact__form" onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="name">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="phone">Phone (Optional)</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="message">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                ></textarea>
-              </div>
-              <button type="submit" className="btn btn-primary">
-                Send Message
-              </button>
-            </form>
-          </div>
           <div className="contact__info">
             <h3>Contact Information</h3>
-            <div className="contact__business-info">
+            {/* <div className="contact__business-info">
               <h4>🏢 Abaddon Pest Control Services Inc.</h4>
               <p>
                 <strong>FDA License:</strong> CCHUHSRR-RIVA-PCO-01-ER-732510
@@ -100,11 +32,11 @@ const Contact = () => {
                 <strong>Classification:</strong> Commercial Application,
                 Exterminator
               </p>
-            </div>
+            </div> */}
             <div className="contact__address">
               <h4>📍 Business Address</h4>
               <p>
-                <strong>Garden Grove Village, Salitran</strong>
+                <strong>Garden Grove Village, Salitran IV</strong>
               </p>
               <p>Dasmariñas, Cavite 4114, Philippines</p>
               <p>
@@ -137,7 +69,13 @@ const Contact = () => {
                   href="https://wa.me/639175842100"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="contact__social-link"
                 >
+                  <img
+                    src={whatsappIcon}
+                    alt="WhatsApp"
+                    className="contact__social-icon"
+                  />
                   +63 917 584 2100
                 </a>
               </p>
@@ -147,7 +85,13 @@ const Contact = () => {
                   href="https://wa.me/639175090485"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="contact__social-link"
                 >
+                  <img
+                    src={whatsappIcon}
+                    alt="WhatsApp"
+                    className="contact__social-icon"
+                  />
                   +63 917 509 0485
                 </a>
               </p>
@@ -157,7 +101,13 @@ const Contact = () => {
                   href="viber://chat?number=639175842100"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="contact__social-link"
                 >
+                  <img
+                    src={viberIcon}
+                    alt="Viber"
+                    className="contact__social-icon"
+                  />
                   +63 917 584 2100
                 </a>
               </p>
@@ -167,15 +117,19 @@ const Contact = () => {
                   href="viber://chat?number=639175090485"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="contact__social-link"
                 >
+                  <img
+                    src={viberIcon}
+                    alt="Viber"
+                    className="contact__social-icon"
+                  />
                   +63 917 509 0485
                 </a>
               </p>
               <p>
                 <strong>Email:</strong>{" "}
-                <a href="mailto:jyabaddonpco@gmail.com">
-                  jyabaddonpco@gmail.com
-                </a>
+                <a href="mailto:abaddonpco@gmail.com">abaddonpco@gmail.com</a>
               </p>
             </div>
             <div className="contact__social-links">
@@ -184,15 +138,27 @@ const Contact = () => {
                 href="https://www.facebook.com/profile.php?id=100063857540013"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="contact__social-link"
               >
-                📘 Facebook (583+ Followers)
+                <img
+                  src={facebookIcon}
+                  alt="Facebook"
+                  className="contact__social-icon"
+                />
+                @Abaddon
               </a>
               <a
                 href="https://tiktok.com/@abaddon_2020"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="contact__social-link"
               >
-                🎵 TikTok @abaddon_2020
+                <img
+                  src={tiktokIcon}
+                  alt="TikTok"
+                  className="contact__social-icon"
+                />
+                @abaddon_2020
               </a>
             </div>
             <div className="contact__service-areas">

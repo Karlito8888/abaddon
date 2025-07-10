@@ -38,19 +38,109 @@
   text-decoration: underline;
 }
 
+.footer__services {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__services li {
+  margin-bottom: var(--spacing-xs);
+  padding-left: var(--spacing-lg);
+  position: relative;
+}
+
+.footer__services li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: bold;
+  width: var(--spacing-md);
+}
+
+.footer__social-links {
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+}
+
 .footer__social-links a {
-  display: inline-block;
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-light);
+  text-decoration: none;
+  padding: var(--spacing-xs) 0;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.footer__social-links a:hover {
+  color: var(--color-primary-gold);
+  border-bottom-color: var(--color-primary-gold);
+}
+
+.footer__social-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.footer__social-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
   margin-right: var(--spacing-md);
+}
+
+.footer__credentials {
+  margin-top: var(--spacing-md);
+}
+
+.footer__credentials p {
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-accent);
+  font-weight: var(--font-weight-medium);
 }
 
 .footer__bottom {
   text-align: center;
   border-top: 1px solid var(--color-border-dark);
   padding-top: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
 }
 
+.footer__bottom-content p {
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+}
+
+.footer__keywords {
+  margin-top: var(--spacing-md);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.footer__keywords span {
+  margin: 0 var(--spacing-xs);
+}
+
+/* Responsive Layout */
 @media (min-width: 768px) {
   .footer__grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer__social-links a {
+    display: inline-block;
+    margin-right: var(--spacing-md);
+    margin-bottom: var(--spacing-xs);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer__grid {
+    grid-template-columns: repeat(4, 1fr);
   }
 }

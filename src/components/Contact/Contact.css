@@ -1,62 +1,91 @@
 .contact {
-  background-color: var(--color-bg-gold);
+  background-color: var(--color-bg-secondary);
 }
 
 .contact__grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--spacing-xl);
-}
-
-.contact__form-container {
-  background-color: var(--color-bg-primary);
-  padding: var(--spacing-lg);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-medium);
-}
-
-.form-group {
-  margin-bottom: var(--spacing-md);
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: var(--spacing-sm);
-  font-weight: 600;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: var(--spacing-sm);
-  border: 1px solid var(--color-border-secondary);
-  border-radius: var(--radius-md);
-}
-
-.form-group textarea {
-  min-height: 150px;
+  gap: var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .contact__info {
+  background-color: var(--color-bg-primary);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-medium);
   text-align: left;
 }
 
 .contact__info h3 {
   font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+  color: var(--color-primary);
+}
+
+.contact__info > div {
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--color-accent);
+}
+
+.contact__info h4 {
+  font-size: var(--font-size-lg);
   margin-bottom: var(--spacing-md);
+  color: var(--color-primary);
 }
 
 .contact__info p {
   margin-bottom: var(--spacing-sm);
+  line-height: 1.6;
 }
 
 .contact__social-links a {
+  display: inline-block;
   margin-right: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
   text-decoration: underline;
+  color: var(--color-primary);
 }
 
+.contact__social-links a:hover {
+  color: var(--color-accent);
+}
+
+.contact__social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.contact__social-icon {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  margin-right: var(--spacing-md);
+}
+
+/* Responsive layout for contact info sections */
 @media (min-width: 768px) {
-  .contact__grid {
-    grid-template-columns: 2fr 1fr;
+  .contact__info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    align-items: start;
+  }
+
+  .contact__info h3 {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .contact__info {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
