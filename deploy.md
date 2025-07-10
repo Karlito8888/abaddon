@@ -48,7 +48,7 @@ netlify deploy --prod --dir=build
 ### 3. Configuration du Domaine Personnalisé
 
 1. Dans Netlify Dashboard → Site settings → Domain management
-2. Ajouter votre domaine personnalisé (ex: `abaddonpestcontrol.com`)
+2. Ajouter votre domaine personnalisé (ex: `abaddonpestcontrol.netlify.app`)
 3. Configurer les DNS selon les instructions Netlify
 4. Activer HTTPS automatique
 
