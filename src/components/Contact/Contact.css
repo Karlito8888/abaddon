@@ -40,6 +40,7 @@
 }
 
 .contact__info p {
+  font-size: var(--font-size-sm);
   margin-bottom: var(--spacing-sm);
   line-height: 1.6;
 }
@@ -59,14 +60,31 @@
 .contact__social-link {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: 0.5em !important; /* espace entre l'icône et le texte */
+  text-decoration: none;
+  color: inherit;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.contact__social-link:hover,
+.contact__social-link:focus {
+  color: #0077ff;
 }
 
 .contact__social-icon {
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
-  margin-right: var(--spacing-md);
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.5em !important;
+}
+
+.contact__social-link span {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: var(--font-size-sm);
+  /* Optionnel : styles supplémentaires pour le texte */
 }
 
 /* Responsive layout for contact info sections */

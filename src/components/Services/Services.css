@@ -33,13 +33,13 @@
 }
 
 .services__card-title {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-md);
   margin-bottom: var(--spacing-sm);
   color: var(--color-text-primary);
 }
 
 .services__card-description {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
   flex-grow: 1;
   margin-bottom: var(--spacing-md);

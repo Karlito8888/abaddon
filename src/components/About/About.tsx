@@ -71,6 +71,7 @@ const About = () => {
               <span className="about__badge">
                 License #: CCHUHSRR-RIVA-PCO-01-ER-732510.
               </span>
+              <br />
               <span className="about__badge"> Valid until Sept 2026</span>
             </div>
             <div className="about__fda-certification">

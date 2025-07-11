@@ -1,3 +1,7 @@
+.footer,
+.footer * {
+  font-size: var(--font-size-xs) !important;
+}
 .footer {
   background-color: var(--color-bg-dark);
   color: var(--color-text-light);
@@ -12,7 +16,6 @@
 }
 
 .footer__col-title {
-  font-size: var(--font-size-lg);
   margin-bottom: var(--spacing-md);
   color: var(--color-primary-gold);
 }
@@ -83,13 +86,31 @@
 .footer__social-link {
   display: inline-flex;
   align-items: center;
+  gap: 0.5em; /* espace entre l'icône et le texte */
+  text-decoration: none;
+  color: inherit;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.footer__social-link:hover,
+.footer__social-link:focus {
+  color: var(--color-primary-gold);
 }
 
 .footer__social-icon {
   width: 20px;
   height: 20px;
   object-fit: contain;
-  margin-right: var(--spacing-md);
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.5em !important;
+}
+
+.footer__social-link span {
+  display: inline-block;
+  vertical-align: middle;
+  /* Optionnel : styles supplémentaires pour le texte */
 }
 
 .footer__credentials {

@@ -94,7 +94,7 @@ const Footer = () => {
                   alt="Facebook"
                   className="footer__social-icon"
                 />
-                Facebook
+                <span>Facebook</span>
               </a>
               <a
                 href="https://tiktok.com/@abaddon_2020"
@@ -107,7 +107,7 @@ const Footer = () => {
                   alt="TikTok"
                   className="footer__social-icon"
                 />
-                TikTok
+                <span>TikTok</span>
               </a>
               <a
                 href="https://wa.me/639175842100"
@@ -120,7 +120,7 @@ const Footer = () => {
                   alt="WhatsApp"
                   className="footer__social-icon"
                 />
-                WhatsApp Business
+                <span>WhatsApp Business</span>
               </a>
               <a
                 href="viber://chat?number=639175842100"
@@ -133,7 +133,7 @@ const Footer = () => {
                   alt="Viber"
                   className="footer__social-icon"
                 />
-                Viber
+                <span>Viber</span>
               </a>
             </div>
             <div className="footer__credentials">

@@ -76,7 +76,7 @@ const Contact = () => {
                     alt="WhatsApp"
                     className="contact__social-icon"
                   />
-                  +63 917 584 2100
+                  <span>+63 917 584 2100</span>
                 </a>
               </p>
               <p>
@@ -92,7 +92,7 @@ const Contact = () => {
                     alt="WhatsApp"
                     className="contact__social-icon"
                   />
-                  +63 917 509 0485
+                  <span>+63 917 509 0485</span>
                 </a>
               </p>
               <p>
@@ -108,7 +108,7 @@ const Contact = () => {
                     alt="Viber"
                     className="contact__social-icon"
                   />
-                  +63 917 584 2100
+                  <span>+63 917 584 2100</span>
                 </a>
               </p>
               <p>
@@ -124,7 +124,7 @@ const Contact = () => {
                     alt="Viber"
                     className="contact__social-icon"
                   />
-                  +63 917 509 0485
+                  <span>+63 917 509 0485</span>
                 </a>
               </p>
               <p>
@@ -145,7 +145,7 @@ const Contact = () => {
                   alt="Facebook"
                   className="contact__social-icon"
                 />
-                @Abaddon
+                <span>@Abaddon</span>
               </a>
               <a
                 href="https://tiktok.com/@abaddon_2020"
@@ -158,7 +158,7 @@ const Contact = () => {
                   alt="TikTok"
                   className="contact__social-icon"
                 />
-                @abaddon_2020
+                <span>@abaddon_2020</span>
               </a>
             </div>
             <div className="contact__service-areas">

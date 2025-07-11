@@ -230,8 +230,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Responsive Design */
@@ -273,5 +277,11 @@
   .media__photo-item,
   .media__video-item {
     height: 200px;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .media__video-overlay {
+    display: none !important;
   }
 }
