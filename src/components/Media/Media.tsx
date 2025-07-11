@@ -24,8 +24,9 @@ const Media = () => {
   };
 
   // Séparer les photos et vidéos
-  const photos = mediaItems?.filter(item => item.imagePath && !item.videoPath) || [];
-  const videos = mediaItems?.filter(item => item.videoPath) || [];
+  const photos =
+    mediaItems?.filter((item) => item.imagePath && !item.videoPath) || [];
+  const videos = mediaItems?.filter((item) => item.videoPath) || [];
 
   const handleItemClick = (item: LocalMediaItem) => {
     // Ouvrir la modale pour toutes les images et vidéos
@@ -68,11 +69,7 @@ const Media = () => {
                   className="media__photo-item"
                   onClick={() => handleItemClick(item)}
                 >
-                  <img
-                    src={item.imagePath}
-                    alt={`${item.id}`}
-                    loading="lazy"
-                  />
+                  <img src={item.imagePath} alt={`${item.id}`} loading="lazy" />
                 </div>
               ))}
             </div>
@@ -93,9 +90,6 @@ const Media = () => {
                   <video className="media__video-thumbnail" muted>
                     <source src={item.videoPath} type="video/mp4" />
                   </video>
-                  <div className="media__video-overlay">
-                    <div className="media__play-button">▶</div>
-                  </div>
                 </div>
               ))}
             </div>
@@ -114,13 +108,7 @@ const Media = () => {
               </button>
               {selectedItem.videoPath ? (
                 <div className="media__modal-video">
-                  <video
-                    controls
-                    autoPlay
-                    loop
-                    muted
-                    className="media__video"
-                  >
+                  <video controls autoPlay loop muted className="media__video">
                     <source src={selectedItem.videoPath} type="video/mp4" />
                     Your browser does not support video playback.
                   </video>
