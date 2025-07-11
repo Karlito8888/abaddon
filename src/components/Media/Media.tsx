@@ -1,6 +1,52 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { MediaLocalService, LocalMediaItem } from "./MediaLocalService";
 import "./Media.css";
+
+// VideoPreview component for smart video preview/play
+const VideoPreview = ({ src, alt }: { src: string; alt: string }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPreview, setIsPreview] = useState(true);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video && isPreview) {
+      video.currentTime = 0;
+      video.muted = true;
+      video.play().then(() => {
+        setTimeout(() => {
+          video.pause();
+        }, 100);
+      });
+    }
+  }, [isPreview]);
+
+  const handlePlay = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent modal opening on video click
+    const video = videoRef.current;
+    if (video) {
+      video.muted = false;
+      video.play();
+      setIsPreview(false);
+    }
+  };
+
+  return (
+    <video
+      className="media__video-thumbnail"
+      ref={videoRef}
+      muted={isPreview}
+      playsInline
+      onClick={handlePlay}
+      controls={!isPreview}
+      style={{ cursor: isPreview ? "pointer" : "default" }}
+      // poster="/logo192.png" // Optionally replace with a real thumbnail
+      aria-label={alt}
+    >
+      <source src={src} type="video/mp4" />
+      Your browser does not support video playback.
+    </video>
+  );
+};
 
 const Media = () => {
   const [mediaItems, setMediaItems] = useState<LocalMediaItem[]>([]);
@@ -29,7 +75,6 @@ const Media = () => {
   const videos = mediaItems?.filter((item) => item.videoPath) || [];
 
   const handleItemClick = (item: LocalMediaItem) => {
-    // Ouvrir la modale pour toutes les images et vidéos
     setSelectedItem(item);
   };
 
@@ -54,10 +99,6 @@ const Media = () => {
     <section className="media section-padding">
       <div className="container">
         <h2 className="section-title text-center">Our Work in Action</h2>
-        {/* <p className="media__intro text-center">
-          See our professional pest control team at work across Dasmarinas, Cavite and Metro Manila
-        </p> */}
-
         {/* Photos Section */}
         {photos.length > 0 && (
           <div className="media__section">
@@ -87,9 +128,7 @@ const Media = () => {
                   className="media__video-item"
                   onClick={() => handleItemClick(item)}
                 >
-                  <video className="media__video-thumbnail" muted>
-                    <source src={item.videoPath} type="video/mp4" />
-                  </video>
+                  <VideoPreview src={item.videoPath!} alt={item.id} />
                 </div>
               ))}
             </div>
@@ -108,7 +147,7 @@ const Media = () => {
               </button>
               {selectedItem.videoPath ? (
                 <div className="media__modal-video">
-                  <video controls autoPlay loop muted className="media__video">
+                  <video controls autoPlay loop className="media__video">
                     <source src={selectedItem.videoPath} type="video/mp4" />
                     Your browser does not support video playback.
                   </video>

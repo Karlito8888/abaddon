@@ -38,7 +38,7 @@ const Hero = () => {
             <li>✓ Flea & tick control + disinfection services</li>
             <li>✓ Integrated Pest Management (IPM) approach</li>
             <li>
-              ✓ <strong>FREE INSPECTION</strong>
+              ✓ <strong>1 FREE INSPECTION</strong>
             </li>
             <li>
               ✓ Licensed PCO serving Dasmariñas, Muntinlupa, Parañaque since
