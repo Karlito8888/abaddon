@@ -45,6 +45,15 @@
   line-height: 1.6;
 }
 
+.contact__info p a:not(.btn):not(.contact__social-link) {
+  color: var(--color-secondary-charcoal);
+  text-decoration: underline;
+}
+
+.contact__info p a:not(.btn):not(.contact__social-link):hover {
+  color: var(--color-primary-gold-accessible);
+}
+
 .contact__social-links a {
   display: inline-block;
   margin-right: var(--spacing-md);

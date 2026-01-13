@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Header.css";
-import logo from "../../assets/logo/abaddon-logo.png";
+import logo from "../../assets/logo/abaddon-logo-opt.png";
 
 export interface NavLink {
   name: string;
@@ -29,6 +29,8 @@ const Header = () => {
             src={logo}
             alt="Abaddon Pest Control Logo"
             className="header__logo"
+            width={429}
+            height={582}
           />
         </a>
 
@@ -53,7 +55,12 @@ const Header = () => {
           FREE Inspection
         </a>
 
-        <button className="header__hamburger" onClick={toggleMobileMenu}>
+        <button
+          className="header__hamburger"
+          onClick={toggleMobileMenu}
+          aria-label="Menu de navigation"
+          aria-expanded={isMobileMenuOpen}
+        >
           <span className="header__hamburger-line"></span>
           <span className="header__hamburger-line"></span>
           <span className="header__hamburger-line"></span>

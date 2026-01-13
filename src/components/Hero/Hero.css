@@ -6,7 +6,8 @@
   justify-content: center;
   text-align: center;
   color: var(--color-text-light);
-  background: var(--gradient-hero),
+  background:
+    var(--gradient-hero),
     url("../../assets/images/hero-bg.jpg") no-repeat center center/cover;
 }
 

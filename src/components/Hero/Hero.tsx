@@ -1,8 +1,11 @@
 import React from "react";
 import "./Hero.css";
-import aLogo from "../../assets/logo/a-logo.png";
-import abaddonLogo from "../../assets/logo/abaddon.png";
-import bLogo from "../../assets/logo/b-logo.png";
+import aLogo from "../../assets/logo/a-logo-opt.png";
+import aLogoWebp from "../../assets/logo/a-logo-opt.webp";
+import abaddonLogo from "../../assets/logo/abaddon-opt.png";
+import abaddonLogoWebp from "../../assets/logo/abaddon-opt.webp";
+import bLogo from "../../assets/logo/b-logo-opt.png";
+import bLogoWebp from "../../assets/logo/b-logo-opt.webp";
 
 const Hero = () => {
   return (
@@ -13,21 +16,37 @@ const Hero = () => {
 
         {/* Séquence de logos animés */}
         <div className="hero__logo-sequence">
-          <img
-            src={aLogo}
-            alt="A"
-            className="hero__logo-item hero__logo-item--1"
-          />
-          <img
-            src={abaddonLogo}
-            alt="Abaddon"
-            className="hero__logo-item hero__logo-item--2"
-          />
-          <img
-            src={bLogo}
-            alt="B"
-            className="hero__logo-item hero__logo-item--3"
-          />
+          <picture>
+            <source srcSet={aLogoWebp} type="image/webp" />
+            <img
+              src={aLogo}
+              alt="A"
+              className="hero__logo-item hero__logo-item--1"
+              width={429}
+              height={115}
+            />
+          </picture>
+          <picture>
+            <source srcSet={abaddonLogoWebp} type="image/webp" />
+            <img
+              src={abaddonLogo}
+              alt="Abaddon"
+              className="hero__logo-item hero__logo-item--2"
+              width={363}
+              height={363}
+              fetchPriority="high"
+            />
+          </picture>
+          <picture>
+            <source srcSet={bLogoWebp} type="image/webp" />
+            <img
+              src={bLogo}
+              alt="B"
+              className="hero__logo-item hero__logo-item--3"
+              width={380}
+              height={132}
+            />
+          </picture>
         </div>
 
         <div className="hero__subtitle">

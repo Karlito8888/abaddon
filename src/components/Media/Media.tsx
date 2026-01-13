@@ -2,14 +2,38 @@ import React, { useState, useEffect, useRef } from "react";
 import { MediaLocalService, LocalMediaItem } from "./MediaLocalService";
 import "./Media.css";
 
-// VideoPreview component for smart video preview/play
+// VideoPreview component with lazy loading for better performance
 const VideoPreview = ({ src, alt }: { src: string; alt: string }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [isPreview, setIsPreview] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Lazy loading with IntersectionObserver
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { rootMargin: "100px", threshold: 0.1 },
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (video && isPreview) {
+    if (video && isPreview && isLoaded) {
       video.currentTime = 0;
       video.muted = true;
       video.play().then(() => {
@@ -18,10 +42,10 @@ const VideoPreview = ({ src, alt }: { src: string; alt: string }) => {
         }, 100);
       });
     }
-  }, [isPreview]);
+  }, [isPreview, isLoaded]);
 
   const handlePlay = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent modal opening on video click
+    e.stopPropagation();
     const video = videoRef.current;
     if (video) {
       video.muted = false;
@@ -31,20 +55,30 @@ const VideoPreview = ({ src, alt }: { src: string; alt: string }) => {
   };
 
   return (
-    <video
-      className="media__video-thumbnail"
-      ref={videoRef}
-      muted={isPreview}
-      playsInline
-      onClick={handlePlay}
-      controls={!isPreview}
-      style={{ cursor: isPreview ? "pointer" : "default" }}
-      // poster="/logo192.png" // Optionally replace with a real thumbnail
-      aria-label={alt}
-    >
-      <source src={src} type="video/mp4" />
-      Your browser does not support video playback.
-    </video>
+    <div ref={containerRef} className="media__video-container">
+      {isVisible ? (
+        <video
+          className="media__video-thumbnail"
+          ref={videoRef}
+          muted={isPreview}
+          playsInline
+          preload="metadata"
+          onClick={handlePlay}
+          controls={!isPreview}
+          onLoadedData={() => setIsLoaded(true)}
+          style={{ cursor: isPreview ? "pointer" : "default" }}
+          poster="/logo192.png"
+          aria-label={alt}
+        >
+          <source src={src} type="video/mp4" />
+          Your browser does not support video playback.
+        </video>
+      ) : (
+        <div className="media__video-placeholder" aria-label={alt}>
+          <span>Loading video...</span>
+        </div>
+      )}
+    </div>
   );
 };
 

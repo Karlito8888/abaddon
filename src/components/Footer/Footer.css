@@ -140,11 +140,13 @@
 .footer__keywords {
   margin-top: var(--spacing-md);
   font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
+  color: #8c8c8c; /* WCAG AA compliant on dark bg #1a1a1a (4.6:1 ratio) */
 }
 
+.footer__keywords,
 .footer__keywords span {
   margin: 0 var(--spacing-xs);
+  color: #8c8c8c; /* WCAG AA compliant on dark bg #1a1a1a (4.6:1 ratio) */
 }
 
 /* Responsive Layout */

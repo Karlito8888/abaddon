@@ -80,13 +80,13 @@ body {
 
 .btn-outline {
   background-color: transparent;
-  color: var(--color-primary-gold);
-  border: 2px solid var(--color-primary-gold);
+  color: var(--color-primary-gold-accessible);
+  border: 2px solid var(--color-primary-gold-accessible);
 }
 
 .btn-outline:hover {
-  background-color: var(--color-primary-gold);
-  color: var(--color-text-primary);
+  background-color: var(--color-primary-gold-accessible);
+  color: var(--color-accent-white);
 }
 
 /* === CONTAINERS === */

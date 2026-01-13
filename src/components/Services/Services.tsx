@@ -72,9 +72,7 @@ const Services = () => {
   return (
     <section id="services" className="services section">
       <div className="container">
-        <h2 className="section-title text-center">
-          Our Services
-        </h2>
+        <h2 className="section-title text-center">Our Services</h2>
         {/* <p className="services__intro">
           FDA-licensed pest control operator (PCO) specializing in Integrated
           Pest Management (IPM).

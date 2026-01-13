@@ -1,6 +1,7 @@
 import React from "react";
 import "./About.css";
-import aboutImage from "../../assets/images/about-us.jpg";
+import aboutImage from "../../assets/images/about-us-optimized.jpg";
+import aboutImageWebp from "../../assets/images/about-us.webp";
 import fdaImage from "../../assets/images/fda.png";
 
 const About = () => {
@@ -9,17 +10,25 @@ const About = () => {
       <div className="container">
         <div className="about__grid">
           <div className="about__image">
-            <img src={aboutImage} alt="Abaddon Pest Control team working" />
+            <picture>
+              <source srcSet={aboutImageWebp} type="image/webp" />
+              <img
+                src={aboutImage}
+                alt="Abaddon Pest Control team working"
+                width={800}
+                height={600}
+                loading="lazy"
+              />
+            </picture>
           </div>
           <div className="about__content">
-            <h2 className="section-title">
-              About Us
-            </h2>
+            <h2 className="section-title">About Us</h2>
             <p style={{ marginBlock: "1rem" }}>
-              <strong>Founded in Cavite</strong>, Abaddon
-              Pest Control Services Inc. is a
+              <strong>Founded in Cavite</strong>, Abaddon Pest Control Services
+              Inc. is a
               <strong> FDA-licensed Pest Control Operator (PCO)</strong>{" "}
-              dedicated to protecting homes and businesses across Metro Manila.<br />
+              dedicated to protecting homes and businesses across Metro Manila.
+              <br />
               Our mission is to deliver effective, reliable, and environmentally
               responsible pest management solutions using scientific approaches.
             </p>
@@ -27,7 +36,9 @@ const About = () => {
               We specialize in <strong>Integrated Pest Management (IPM)</strong>
               , a comprehensive approach that combines thorough inspections,
               targeted treatments, and preventative measures to ensure long-term
-              pest control.<br />Our team of experienced technicians serves
+              pest control.
+              <br />
+              Our team of experienced technicians serves
               <strong> Dasmariñas, Muntinlupa, Parañaque</strong> and
               surrounding areas with the highest level of service and customer
               satisfaction.
@@ -79,6 +90,9 @@ const About = () => {
                 src={fdaImage}
                 alt="FDA Licensed Pest Control Operator Certificate"
                 className="about__fda-image"
+                width={217}
+                height={99}
+                loading="lazy"
               />
             </div>
           </div>
