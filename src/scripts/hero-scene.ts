@@ -199,7 +199,9 @@ export async function init(canvas: HTMLCanvasElement): Promise<GateScene> {
 
   await renderer.compileAsync(scene, camera);
 
-  return {
+  // The canvas is fixed, so the gate's off-screen pause never fires: pause on the hero section
+  // instead. Below the hero the backdrop stays, the grains simply stop drifting.
+  const sceneApi: GateScene = {
     start() {
       last = undefined;
       renderer.setAnimationLoop(frame);
@@ -208,4 +210,6 @@ export async function init(canvas: HTMLCanvasElement): Promise<GateScene> {
       renderer.setAnimationLoop(null);
     },
   };
+  new IntersectionObserver(([entry]) => (entry.isIntersecting ? sceneApi.start() : sceneApi.stop())).observe(hero);
+  return sceneApi;
 }
