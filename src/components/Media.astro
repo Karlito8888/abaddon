@@ -1,7 +1,18 @@
 ---
+import { Image, getImage } from "astro:assets";
 import "./Media.css";
 
-const photos = Array.from({ length: 8 }, (_, i) => `/media/facebook/abaddon-${i + 1}.jpg`);
+const sources = Object.values(
+  import.meta.glob<ImageMetadata>("../assets/photos/*.jpg", { eager: true, import: "default" }),
+);
+// Thumbnails are cropped to the tile ratio at 1x/2x; the dialog gets a 1600px webp of the full frame.
+const photos = await Promise.all(
+  sources.map(async (src, i) => ({
+    src,
+    alt: `Abaddon pest control work, photo ${i + 1}`,
+    full: (await getImage({ src, width: 1600, format: "webp" })).src,
+  })),
+);
 ---
 
 <section class="media section-padding">
@@ -10,9 +21,9 @@ const photos = Array.from({ length: 8 }, (_, i) => `/media/facebook/abaddon-${i 
 
     <div class="media__photo-grid">
       {
-        photos.map((src, i) => (
-          <button type="button" class="media__photo-item" data-animate="reveal-stagger" data-delay={i % 4}>
-            <img src={src} alt={`Abaddon pest control work, photo ${i + 1}`} loading="lazy" />
+        photos.map((photo, i) => (
+          <button type="button" class="media__photo-item" data-full={photo.full} data-animate="reveal-stagger" data-delay={i % 4}>
+            <Image src={photo.src} alt={photo.alt} width={600} height={450} fit="cover" densities={[1, 2]} loading="lazy" />
           </button>
         ))
       }
@@ -32,10 +43,10 @@ const photos = Array.from({ length: 8 }, (_, i) => `/media/facebook/abaddon-${i 
 <script>
   const dialog = document.querySelector<HTMLDialogElement>(".media__modal")!;
   const big = dialog.querySelector("img")!;
-  document.querySelectorAll<HTMLImageElement>(".media__photo-item img").forEach((thumb) => {
-    thumb.parentElement!.addEventListener("click", () => {
-      big.src = thumb.src;
-      big.alt = thumb.alt;
+  document.querySelectorAll<HTMLButtonElement>(".media__photo-item").forEach((tile) => {
+    tile.addEventListener("click", () => {
+      big.src = tile.dataset.full!;
+      big.alt = tile.querySelector("img")!.alt;
       dialog.showModal();
     });
   });

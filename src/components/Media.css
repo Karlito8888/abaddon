@@ -43,6 +43,7 @@
 
 /* Photo viewer dialog */
 .media__modal {
+  margin: auto; /* the global reset zeroes margins; auto is what centres a <dialog> */
   border: none;
   padding: 0;
   background: transparent;
