@@ -1,5 +1,6 @@
+/* 30% so the fixed hero backdrop shows through (Hero.css). */
 .contact {
-  background: var(--gradient-dark);
+  background: linear-gradient(135deg, rgb(26 26 26 / 0.3), rgb(45 45 45 / 0.3));
   color: var(--color-text-light);
 }
 

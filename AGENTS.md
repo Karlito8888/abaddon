@@ -44,6 +44,12 @@ no backend, no cookies. `src/pages/404.astro` is the not-found page (served by t
   pointer parallax. When formed it sets `hero--formed` on the section, which reveals the real
   logo; without WebGL the CSS fade on `.hero__logo-item--2` plays at 4.5 s instead. Caps: 1400
   grains (700 below 768 px), pixel ratio 1.5 (1 on mobile), additive blending, no MSAA.
+- Fixed backdrop (`Hero.css`): the hero gradient, overlay, particle canvas and the 80% logo
+  watermark are `position: fixed; z-index: -1` and sit behind the whole page; no ancestor may
+  create a stacking context. Every other section keeps a 30% background (Charles's choice,
+  2026-10-14) so the backdrop shows through; section titles are light and the About text sits
+  on an opaque white card for contrast. Lighthouse's contrast audit cannot see the fixed layer
+  and reports false positives on the dark sections (footer, contact): judge by eye there.
 - Motion (`Base.astro`): `inView` reveals on `[data-animate="reveal"]` and staggered
   `reveal-stagger` (`data-delay` × 0.15 s). `[data-animate]` starts at `opacity: 0`; two nets
   keep content visible: `<noscript>` and `html.no-fx` after 5 s if the module never sets

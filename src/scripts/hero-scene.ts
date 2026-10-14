@@ -109,7 +109,8 @@ export async function init(canvas: HTMLCanvasElement): Promise<GateScene> {
   points.frustumCulled = false;
   group.add(points);
 
-  // Layout in CSS pixels, centred on the hero; the mark box is where the particles form.
+  // Layout in CSS pixels, centred on the canvas (fixed to the viewport); the mark box, measured on
+  // every scroll, is where the particles form.
   let W = 1;
   let H = 1;
   let mx = 0;
@@ -118,22 +119,23 @@ export async function init(canvas: HTMLCanvasElement): Promise<GateScene> {
   let spreadX = 1;
   let spreadY = 1;
   const layout = () => {
-    W = hero.clientWidth;
-    H = hero.clientHeight;
+    W = canvas.clientWidth;
+    H = canvas.clientHeight;
     renderer.setSize(W, H, false);
     Object.assign(camera, { left: -W / 2, right: W / 2, top: H / 2, bottom: -H / 2 });
     camera.updateProjectionMatrix();
-    const hr = hero.getBoundingClientRect();
+    const cr = canvas.getBoundingClientRect();
     const mr = mark.getBoundingClientRect();
-    mx = mr.left - hr.left - W / 2;
-    my = H / 2 - (mr.top - hr.top);
+    mx = mr.left - cr.left - W / 2;
+    my = H / 2 - (mr.top - cr.top);
     mw = mr.width;
     spreadX = W * 0.55;
     spreadY = H * 0.55;
     mat.size = Math.max(2.5, spacing * mw * 1.4);
   };
   layout();
-  new ResizeObserver(layout).observe(hero);
+  new ResizeObserver(layout).observe(canvas);
+  addEventListener("scroll", layout, { passive: true });
 
   let px = 0;
   let py = 0;

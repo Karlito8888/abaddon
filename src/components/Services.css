@@ -1,5 +1,6 @@
+/* 30% so the fixed hero backdrop shows through (Hero.css). */
 .services {
-  background-color: var(--color-bg-secondary);
+  background-color: rgb(255 248 220 / 0.3);
 }
 
 /* Below 768 px: one card per view, native horizontal scroll with snap; dots below (Services.astro). */
@@ -79,9 +80,10 @@
   margin-bottom: var(--spacing-md);
 }
 
-/* Section title responsive styles */
+/* Section titles sit on the translucent sections over the dark backdrop: light text. */
 .section-title {
   font-size: var(--font-size-3xl); /* Mobile: 30px au lieu de 36px */
+  color: var(--color-text-light);
 }
 
 @media (min-width: 768px) {

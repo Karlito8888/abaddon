@@ -2,8 +2,9 @@
 .footer * {
   font-size: var(--font-size-xs) !important;
 }
+/* 30% so the fixed hero backdrop shows through (Hero.css). */
 .footer {
-  background-color: var(--color-bg-dark);
+  background-color: rgb(26 26 26 / 0.3);
   color: var(--color-text-light);
   padding: var(--spacing-xl) 0;
 }

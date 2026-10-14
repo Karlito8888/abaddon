@@ -1,3 +1,8 @@
+/* About had the white page background; 30% so the fixed hero backdrop shows through (Hero.css). */
+.about {
+  background-color: rgb(255 255 255 / 0.3);
+}
+
 .about__grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -10,6 +15,18 @@
   height: auto;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-heavy);
+}
+
+/* Opaque card: the section background is translucent over the dark backdrop. */
+.about__content {
+  background-color: var(--color-bg-primary);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-light);
+}
+
+.about__content .section-title {
+  color: var(--color-text-primary);
 }
 
 .about__content p {
