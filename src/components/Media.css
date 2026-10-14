@@ -5,27 +5,6 @@
   padding-bottom: var(--spacing-xl);
 }
 
-.media__intro {
-  margin-bottom: var(--spacing-2xl);
-  font-size: var(--font-size-lg);
-  color: var(--color-text-secondary);
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.media__section {
-  margin-bottom: var(--spacing-3xl);
-}
-
-.media__section-title {
-  font-size: var(--font-size-xl);
-  margin-bottom: var(--spacing-lg);
-  text-align: center;
-  color: var(--color-secondary-charcoal);
-  font-weight: var(--font-weight-semibold);
-}
-
 .media__photo-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

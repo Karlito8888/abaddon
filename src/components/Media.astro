@@ -8,17 +8,14 @@ const photos = Array.from({ length: 8 }, (_, i) => `/media/facebook/abaddon-${i 
   <div class="container">
     <h2 class="section-title text-center" data-animate="reveal">Our Work in Action</h2>
 
-    <div class="media__section">
-      <h3 class="media__section-title">Photos</h3>
-      <div class="media__photo-grid">
-        {
-          photos.map((src, i) => (
-            <button type="button" class="media__photo-item" data-animate="reveal-stagger" data-delay={i % 4}>
-              <img src={src} alt={`Abaddon pest control work, photo ${i + 1}`} loading="lazy" />
-            </button>
-          ))
-        }
-      </div>
+    <div class="media__photo-grid">
+      {
+        photos.map((src, i) => (
+          <button type="button" class="media__photo-item" data-animate="reveal-stagger" data-delay={i % 4}>
+            <img src={src} alt={`Abaddon pest control work, photo ${i + 1}`} loading="lazy" />
+          </button>
+        ))
+      }
     </div>
 
     <dialog class="media__modal">
