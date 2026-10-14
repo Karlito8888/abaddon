@@ -82,5 +82,22 @@ const services = [
         ))
       }
     </div>
+    <div class="services__dots" aria-label="Service cards">
+      {services.map((service, i) => <button type="button" aria-label={service.title} aria-current={i === 0 ? "true" : undefined} />)}
+    </div>
   </div>
 </section>
+
+<script>
+  // Mobile carousel: the grid is a native scroll-snap row; the dots follow the scroll and jump to a card.
+  const grid = document.querySelector<HTMLElement>(".services__grid")!;
+  const cards = [...grid.children] as HTMLElement[];
+  const dots = [...document.querySelectorAll<HTMLButtonElement>(".services__dots button")];
+  const mark = (index: number) => dots.forEach((dot, i) => (i === index ? dot.setAttribute("aria-current", "true") : dot.removeAttribute("aria-current")));
+  grid.addEventListener(
+    "scroll",
+    () => mark(Math.round((grid.scrollLeft / (grid.scrollWidth - grid.clientWidth)) * (cards.length - 1))),
+    { passive: true },
+  );
+  dots.forEach((dot, i) => dot.addEventListener("click", () => cards[i].scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" })));
+</script>

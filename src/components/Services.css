@@ -2,10 +2,45 @@
   background-color: var(--color-bg-secondary);
 }
 
+/* Below 768 px: one card per view, native horizontal scroll with snap; dots below (Services.astro). */
 .services__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-lg);
+  display: flex;
+  gap: var(--spacing-md);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-block: var(--spacing-sm);
+}
+
+.services__grid::-webkit-scrollbar {
+  display: none;
+}
+
+.services__grid > * {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+}
+
+.services__dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
+
+.services__dots button {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--color-secondary-light-gray);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.services__dots button[aria-current="true"] {
+  background: var(--color-primary-gold);
 }
 
 .services__card {
@@ -18,7 +53,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
 }
 
 .services__card:hover {
@@ -52,7 +86,15 @@
 
 @media (min-width: 768px) {
   .services__grid {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+    overflow: visible;
+    padding-block: 0;
+  }
+
+  .services__dots {
+    display: none;
   }
 
   .section-title {
