@@ -67,10 +67,9 @@
   position: relative;
 }
 
-.media__modal-close {
+.media__modal-close,
+.media__modal-nav {
   position: absolute;
-  top: var(--spacing-md);
-  right: var(--spacing-md);
   background: rgba(0, 0, 0, 0.7);
   color: white;
   border: none;
@@ -86,11 +85,47 @@
   transition: var(--transition-normal);
 }
 
-.media__modal-close:hover {
+.media__modal-close {
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+}
+
+.media__modal-nav {
+  top: 50%;
+  translate: 0 -50%;
+  font-size: var(--font-size-2xl);
+  line-height: 1;
+}
+
+.media__modal-nav--prev {
+  left: var(--spacing-md);
+}
+
+.media__modal-nav--next {
+  right: var(--spacing-md);
+}
+
+.media__modal-close:hover,
+.media__modal-nav:hover {
   background: rgba(0, 0, 0, 0.9);
 }
 
+.media__modal-counter {
+  position: absolute;
+  bottom: var(--spacing-sm);
+  left: 50%;
+  translate: -50% 0;
+  margin: 0;
+  padding: 2px var(--spacing-sm);
+  border-radius: var(--radius-full);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: var(--font-size-sm);
+}
+
 .media__modal-image {
+  touch-action: pan-y; /* horizontal moves stay pointer events for the swipe, vertical ones scroll */
+  user-select: none;
   width: 100%;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   overflow: hidden;

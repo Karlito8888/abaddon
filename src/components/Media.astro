@@ -32,9 +32,12 @@ const photos = await Promise.all(
     <dialog class="media__modal">
       <div class="media__modal-content">
         <button type="button" class="media__modal-close" aria-label="Close">✕</button>
+        <button type="button" class="media__modal-nav media__modal-nav--prev" aria-label="Previous photo">‹</button>
+        <button type="button" class="media__modal-nav media__modal-nav--next" aria-label="Next photo">›</button>
         <div class="media__modal-image">
-          <img class="media__modal-img" alt="" />
+          <img class="media__modal-img" alt="" draggable="false" />
         </div>
+        <p class="media__modal-counter" aria-live="polite"></p>
       </div>
     </dialog>
   </div>
@@ -43,16 +46,34 @@ const photos = await Promise.all(
 <script>
   const dialog = document.querySelector<HTMLDialogElement>(".media__modal")!;
   const big = dialog.querySelector("img")!;
-  document.querySelectorAll<HTMLButtonElement>(".media__photo-item").forEach((tile) => {
-    tile.addEventListener("click", () => {
-      big.src = tile.dataset.full!;
-      big.alt = tile.querySelector("img")!.alt;
-      dialog.showModal();
-    });
-  });
-  // Backdrop clicks target the dialog itself; the content box fills it, so inner clicks never match.
+  const counter = dialog.querySelector(".media__modal-counter")!;
+  const tiles = [...document.querySelectorAll<HTMLButtonElement>(".media__photo-item")];
+  let index = 0;
+
+  const show = (i: number) => {
+    index = (i + tiles.length) % tiles.length;
+    big.src = tiles[index].dataset.full!;
+    big.alt = tiles[index].querySelector("img")!.alt;
+    counter.textContent = `${index + 1} / ${tiles.length}`;
+  };
+  tiles.forEach((tile, i) => tile.addEventListener("click", () => (show(i), dialog.showModal())));
+
   dialog.addEventListener("click", (e) => {
     const target = e.target as Element;
-    if (target === dialog || target.closest(".media__modal-close")) dialog.close();
+    if (target.closest(".media__modal-nav--prev")) show(index - 1);
+    else if (target.closest(".media__modal-nav--next")) show(index + 1);
+    // Backdrop clicks target the dialog itself; the content box fills it, so inner clicks never match.
+    else if (target === dialog || target.closest(".media__modal-close")) dialog.close();
+  });
+  dialog.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") show(index - 1);
+    if (e.key === "ArrowRight") show(index + 1);
+  });
+  // Swipe: a horizontal pointer move of 40px or more between down and up.
+  let downX = 0;
+  dialog.addEventListener("pointerdown", (e) => (downX = e.clientX));
+  dialog.addEventListener("pointerup", (e) => {
+    const dx = e.clientX - downX;
+    if (Math.abs(dx) >= 40) show(index + (dx < 0 ? 1 : -1));
   });
 </script>
