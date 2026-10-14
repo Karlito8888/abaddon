@@ -7,76 +7,65 @@ import tiktokIcon from "../assets/images/tiktok.png";
 import { ADDRESS, EMAIL, FACEBOOK_URL, MAPS_URL, PHONES, TIKTOK_URL, telHref, viberHref, whatsappHref } from "../site";
 import "./Contact.css";
 
-const messengers = [
-  { label: "WhatsApp", icon: whatsappIcon, href: whatsappHref },
-  { label: "Viber", icon: viberIcon, href: viberHref },
+const [main, second] = PHONES;
+const areas = ["Dasmariñas, Cavite", "Muntinlupa", "Parañaque", "Las Piñas", "Residential & commercial"];
+
+/** One tile per way to reach the company. `icon` is a brand image or an emoji glyph. */
+const tiles: { label: string; value: string; href: string; icon: ImageMetadata | string; external?: boolean }[] = [
+  { label: "Call or text", value: main.display, href: telHref(main.e164), icon: "📞" },
+  { label: "Call or text", value: second.display, href: telHref(second.e164), icon: "📞" },
+  { label: "WhatsApp", value: main.display, href: whatsappHref(main.e164), icon: whatsappIcon, external: true },
+  { label: "Viber", value: main.display, href: viberHref(main.e164), icon: viberIcon },
+  { label: "Email", value: EMAIL, href: `mailto:${EMAIL}`, icon: "✉️" },
+  { label: "Visit us", value: `${ADDRESS.street}, ${ADDRESS.locality}`, href: MAPS_URL, icon: "📍", external: true },
+  { label: "Facebook", value: "@Abaddon", href: FACEBOOK_URL, icon: facebookIcon, external: true },
+  { label: "TikTok", value: "@abaddon_2020", href: TIKTOK_URL, icon: tiktokIcon, external: true },
 ];
 ---
 
 <section id="contact" class="contact section">
-  <div class="container">
-    <h2 class="section-title text-center" data-animate="reveal">Contact Us</h2>
-    <p class="contact__intro text-center">Get your <strong>FREE pest inspection</strong> today!</p>
-    <div class="contact__grid">
-      <div class="contact__info" data-animate="reveal">
-        <h3>Contact Information</h3>
-        <div class="contact__address">
-          <h4>📍 Business Address</h4>
-          <p><strong>{ADDRESS.street}</strong></p>
-          <p>{ADDRESS.locality}, {ADDRESS.region} {ADDRESS.postalCode}, Philippines</p>
-          <p>
-            <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-              📍 View on Google Maps
-            </a>
-          </p>
-        </div>
-        <div class="contact__phone">
-          <h4>📞 Call or Text</h4>
-          {
-            PHONES.map((phone, i) => (
-              <p>
-                <strong>Mobile {i + 1}:</strong> <a href={telHref(phone.e164)}>{phone.display}</a>
-              </p>
-            ))
-          }
-        </div>
-        <div class="contact__digital">
-          <h4>💬 Digital Contact</h4>
-          {
-            messengers.map(({ label, icon, href }) =>
-              PHONES.map((phone, i) => (
-                <p>
-                  <strong>{label} {i + 1}:</strong>{" "}
-                  <a href={href(phone.e164)} target="_blank" rel="noopener noreferrer" class="contact__social-link">
-                    <Image src={icon} alt={label} class="contact__social-icon" width={48} height={48} />
-                    <span>{phone.display}</span>
-                  </a>
-                </p>
-              )),
-            )
-          }
-          <p>
-            <strong>Email:</strong> <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
-          </p>
-        </div>
-        <div class="contact__social-links">
-          <h4>🌐 Follow Us</h4>
-          <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" class="contact__social-link">
-            <Image src={facebookIcon} alt="Facebook" class="contact__social-icon" width={48} height={48} />
-            <span>@Abaddon</span>
-          </a>
-          <a href={TIKTOK_URL} target="_blank" rel="noopener noreferrer" class="contact__social-link">
-            <Image src={tiktokIcon} alt="TikTok" class="contact__social-icon" width={48} height={48} />
-            <span>@abaddon_2020</span>
-          </a>
-        </div>
-        <div class="contact__service-areas">
-          <h4>🗺️ Service Areas</h4>
-          <p><strong>Primary:</strong> Salitran, Dasmariñas, Cavite</p>
-          <p><strong>Metro Manila:</strong> Muntinlupa, Parañaque, Las Piñas</p>
-          <p><strong>Coverage:</strong> Residential &amp; Commercial</p>
-        </div>
+  <div class="container contact__layout">
+    <div class="contact__pitch" data-animate="reveal">
+      <p class="contact__eyebrow">Free inspection</p>
+      <h2 class="contact__title">Pests at home? Let's talk today.</h2>
+      <p class="contact__lead">
+        Call, text or message us. We answer every day from 8:00 to 18:00 and come to you across Dasmariñas,
+        Muntinlupa, Parañaque and Las Piñas.
+      </p>
+      <div class="contact__cta">
+        <a href={telHref(main.e164)} class="btn btn-primary">Call {main.display}</a>
+        <a href={whatsappHref(main.e164)} class="btn contact__btn-ghost" target="_blank" rel="noopener noreferrer">
+          Message on WhatsApp
+        </a>
       </div>
+      <ul class="contact__areas" aria-label="Service areas">
+        {areas.map((area) => <li>{area}</li>)}
+      </ul>
+    </div>
+
+    <div class="contact__channels">
+      {
+        tiles.map((tile, i) => (
+          <a
+            href={tile.href}
+            class="contact__tile"
+            data-animate="reveal-stagger"
+            data-delay={i % 4}
+            target={tile.external ? "_blank" : undefined}
+            rel={tile.external ? "noopener noreferrer" : undefined}
+          >
+            {typeof tile.icon === "string" ? (
+              <span class="contact__tile-icon" aria-hidden="true">{tile.icon}</span>
+            ) : (
+              <Image src={tile.icon} alt="" class="contact__tile-icon" width={40} height={40} />
+            )}
+            <span class="contact__tile-text">
+              <span class="contact__tile-label">{tile.label}</span>
+              <span class="contact__tile-value">{tile.value}</span>
+            </span>
+          </a>
+        ))
+      }
     </div>
   </div>
 </section>
