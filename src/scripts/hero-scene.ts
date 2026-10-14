@@ -118,24 +118,29 @@ export async function init(canvas: HTMLCanvasElement): Promise<GateScene> {
   let mw = 1;
   let spreadX = 1;
   let spreadY = 1;
-  const layout = () => {
-    W = canvas.clientWidth;
-    H = canvas.clientHeight;
-    renderer.setSize(W, H, false);
-    Object.assign(camera, { left: -W / 2, right: W / 2, top: H / 2, bottom: -H / 2 });
-    camera.updateProjectionMatrix();
+  // Where the mark box sits on the canvas: cheap, so it can run on every scroll while forming.
+  const measure = () => {
     const cr = canvas.getBoundingClientRect();
     const mr = mark.getBoundingClientRect();
     mx = mr.left - cr.left - W / 2;
     my = H / 2 - (mr.top - cr.top);
     mw = mr.width;
+  };
+  // Drawing buffer and camera: only on resize (setSize recreates the buffer, never do it per scroll).
+  const resize = () => {
+    W = canvas.clientWidth;
+    H = canvas.clientHeight;
+    renderer.setSize(W, H, false);
+    Object.assign(camera, { left: -W / 2, right: W / 2, top: H / 2, bottom: -H / 2 });
+    camera.updateProjectionMatrix();
     spreadX = W * 0.55;
     spreadY = H * 0.55;
+    measure();
     mat.size = Math.max(2.5, spacing * mw * 1.4);
   };
-  layout();
-  new ResizeObserver(layout).observe(canvas);
-  addEventListener("scroll", layout, { passive: true });
+  resize();
+  new ResizeObserver(resize).observe(canvas);
+  addEventListener("scroll", () => formed || measure(), { passive: true });
 
   let px = 0;
   let py = 0;
