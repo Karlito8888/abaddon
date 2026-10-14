@@ -139,8 +139,39 @@ const jsonLd = {
     <meta name="msapplication-TileColor" content="#ffd700" />
     <meta name="msapplication-TileImage" content="/android-chrome-192x192.png" />
     <meta name="msapplication-config" content="/browserconfig.xml" />
+    <noscript><style>html [data-animate] { opacity: 1; }</style></noscript>
+    <script is:inline>
+      // If the Motion module never signs in (failed import, runtime error), show everything after 5 s.
+      setTimeout(() => document.documentElement.hasAttribute("data-fx") || document.documentElement.classList.add("no-fx"), 5000);
+    </script>
   </head>
   <body>
     <slot />
+    <script>
+      import { animate, inView } from "motion";
+
+      const ease = [0.25, 0.46, 0.45, 0.94] as const;
+      const rise = (px: number) => ["translateY(" + px + "px)", "translateY(0)"];
+      // Scroll reveals: fire once on entering the viewport.
+      inView(
+        '[data-animate="reveal"]',
+        (el) => {
+          animate(el, { opacity: [0, 1], transform: rise(24) }, { duration: 0.7, ease });
+        },
+        { margin: "0px 0px -80px 0px" },
+      );
+      inView(
+        '[data-animate="reveal-stagger"]',
+        (el) => {
+          animate(
+            el,
+            { opacity: [0, 1], transform: rise(20) },
+            { duration: 0.6, delay: Number((el as HTMLElement).dataset.delay ?? 0) * 0.15, ease },
+          );
+        },
+        { margin: "0px 0px -40px 0px" },
+      );
+      document.documentElement.setAttribute("data-fx", "");
+    </script>
   </body>
 </html>

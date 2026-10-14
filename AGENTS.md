@@ -29,19 +29,36 @@ no backend, no cookies. `src/pages/404.astro` is the not-found page (served by t
   `aggregateRating`: there is no verifiable review source, and Google refuses self-serving
   ratings on `LocalBusiness`.
 - `src/components/<Name>.astro` + `<Name>.css` side by side. BEM class names, no CSS-in-JS.
-  The only client JavaScript is two inline scripts: the hamburger toggle (`Header`) and the
-  native `<dialog>` photo viewer (`Media`).
+  Inline scripts: the hamburger toggle (`Header`), the native `<dialog>` photo viewer
+  (`Media`), the scene start (`Hero`).
 - `src/styles/`: `global.css`, `typography.css`, `variables.css` (tokens).
 - `src/assets/`: logos, photos and SVG pest icons, all served through `astro:assets` (webp
-  generated at build). `Hero.css` reads the watermark through `--hero-watermark`, set from an
-  `?url` import, because Astro drops originals that are only referenced through `<Image>`.
+  generated at build). `Hero.css` reads the watermark through `--hero-watermark`, a 400 px webp
+  from `getImage()`.
+- `src/scripts/webgl-gate.ts` (copied from CharmaWeb): starts a three.js scene only with
+  WebGL 2, after `load` + idle, pauses it off-screen, swallows failures so the static page
+  stays.
+- `src/scripts/hero-scene.ts`: particles sampled from the bright pixels of `abaddon-opt.png`
+  (silver ring, gold A, each grain keeps its pixel colour) scatter, form the mark over the
+  `.hero__logo-item--2` box in 2.5 s, hold 1.2 s, then disperse into faint drifting dust with
+  pointer parallax. When formed it sets `hero--formed` on the section, which reveals the real
+  logo; without WebGL the CSS fade on `.hero__logo-item--2` plays at 4.5 s instead. Caps: 1400
+  grains (700 below 768 px), pixel ratio 1.5 (1 on mobile), additive blending, no MSAA.
+- Motion (`Base.astro`): `inView` reveals on `[data-animate="reveal"]` and staggered
+  `reveal-stagger` (`data-delay` × 0.15 s). `[data-animate]` starts at `opacity: 0`; two nets
+  keep content visible: `<noscript>` and `html.no-fx` after 5 s if the module never sets
+  `data-fx`. Hover lifts use `translate` / `scale`, never `transform`: Motion owns `transform`
+  on revealed elements. Animations are always on, as on charmaweb.com (no
+  `prefers-reduced-motion` handling, Charles's decision).
 - `public/media/`: the 8 Facebook photos and 8 TikTok videos listed in `Media.astro`.
 - `public/_headers` and `public/_redirects`: security headers, immutable cache on `/_astro/*`,
   vanity 301s (`/termite`, `/fb`, `/maps`, ...) supported natively by Workers static assets.
 
 ## Stack and gate
 
-Astro 7, TypeScript 6 (`@astrojs/check` refuses TypeScript 7), `@astrojs/sitemap`, `sharp`.
+Astro 7, TypeScript 6 (`@astrojs/check` refuses TypeScript 7), `@astrojs/sitemap`, `sharp`,
+`three` 0.186 (dynamic import, ~130 kB gzip, only when the scene can run), `motion` 14 (in the
+Base bundle).
 Bun only. Dev and preview on port 4330 (4329 is CharmaWeb).
 
 ```

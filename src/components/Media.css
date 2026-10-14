@@ -62,7 +62,7 @@
 }
 
 .media__photo-item:hover {
-  transform: scale(1.02);
+  scale: 1.02; /* not transform: Motion owns it (reveal) */
   box-shadow: var(--shadow-medium);
 }
 

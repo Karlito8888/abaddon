@@ -64,11 +64,11 @@ const services = [
 
 <section id="services" class="services section">
   <div class="container">
-    <h2 class="section-title text-center">Our Services</h2>
+    <h2 class="section-title text-center" data-animate="reveal">Our Services</h2>
     <div class="services__grid">
       {
-        services.map((service) => (
-          <div class="services__card">
+        services.map((service, i) => (
+          <div class="services__card" data-animate="reveal-stagger" data-delay={i % 4}>
             <Image
               src={service.icon}
               alt={`${service.title} icon`}

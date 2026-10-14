@@ -23,6 +23,16 @@ html {
   scroll-margin-top: 80px;
 }
 
+/* Hidden until Motion reveals it (Base.astro). Shown anyway without JavaScript (<noscript>)
+   or when the Motion module has not signed in after 5 s (html.no-fx). */
+[data-animate] {
+  opacity: 0;
+}
+.no-fx [data-animate] {
+  opacity: 1;
+  transform: none;
+}
+
 body {
   font-family: var(--font-primary);
   line-height: var(--line-height-normal);

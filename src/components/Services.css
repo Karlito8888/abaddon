@@ -22,7 +22,7 @@
 }
 
 .services__card:hover {
-  transform: translateY(-5px);
+  translate: 0 -5px; /* not transform: Motion owns it (reveal) */
   box-shadow: var(--shadow-medium);
 }
 
