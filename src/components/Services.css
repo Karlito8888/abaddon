@@ -45,11 +45,6 @@
   margin-bottom: var(--spacing-md);
 }
 
-.services__card-cta {
-  margin-top: auto;
-  padding-top: var(--spacing-sm);
-}
-
 /* Section title responsive styles */
 .section-title {
   font-size: var(--font-size-3xl); /* Mobile: 30px au lieu de 36px */
