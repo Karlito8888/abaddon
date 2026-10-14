@@ -1,0 +1,114 @@
+---
+import Base from "../layouts/Base.astro";
+import { PHONES, telHref } from "../site";
+---
+
+<Base
+  title="Page Not Found - Abaddon Pest Control Services"
+  description="Page not found. Return to Abaddon Pest Control Services for FDA-licensed pest control in Dasmariñas, Cavite and Metro Manila."
+  noindex
+>
+  <div class="container">
+    <h1>404</h1>
+    <h2>Page Not Found</h2>
+    <p>The page you're looking for doesn't exist, but we're here to help with your pest control needs!</p>
+
+    <div class="services-list">
+      <h3>Our Services:</h3>
+      <ul>
+        <li>Termite Control &amp; Treatment</li>
+        <li>Cockroach Control</li>
+        <li>Ants Control</li>
+        <li>Rats &amp; Rodents Control</li>
+        <li>Flies Control</li>
+        <li>Bees Control</li>
+        <li>Mosquito Control</li>
+        <li>Bed Bugs Control</li>
+        <li>Flea &amp; Tick Control</li>
+        <li>Disinfection Services</li>
+        <li>FREE Pest Inspection</li>
+      </ul>
+    </div>
+
+    <p><strong>FDA Licensed PCO</strong> serving Dasmariñas, Cavite and Metro Manila</p>
+
+    <a href="/" class="btn">Return Home</a>
+    <a href="/#contact" class="btn">Get FREE Inspection</a>
+    {PHONES.map((phone) => <a href={telHref(phone.e164)} class="btn">Call: {phone.display}</a>)}
+  </div>
+</Base>
+
+<script>
+  setTimeout(() => (window.location.href = "/"), 10000);
+</script>
+
+<style is:global>
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .container {
+    max-width: 600px;
+    padding: 2rem;
+  }
+  h1 {
+    font-size: 4rem;
+    margin: 0 0 1rem 0;
+    color: #ffd700;
+  }
+  h2 {
+    font-size: 1.5rem;
+    margin: 0 0 1rem 0;
+    font-weight: 400;
+    color: #ffffff;
+  }
+  h3 {
+    color: #ffffff;
+  }
+  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0 0 2rem 0;
+    opacity: 0.9;
+  }
+  .btn {
+    display: inline-block;
+    background: #ffd700;
+    color: #1a1a1a;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    margin: 0 10px 10px 0;
+    transition: all 0.3s ease;
+  }
+  .btn:hover {
+    background: #ffed4e;
+    color: #1a1a1a;
+    transform: translateY(-2px);
+  }
+  .services-list {
+    margin: 2rem 0;
+    text-align: left;
+  }
+  .services-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  .services-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #444;
+  }
+  .services-list li:before {
+    content: "✓ ";
+    color: #ffd700;
+    font-weight: bold;
+  }
+</style>

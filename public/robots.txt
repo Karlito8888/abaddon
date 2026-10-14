@@ -1,15 +1,4 @@
-# Robots.txt for Abaddon Pest Control Services
-# https://www.robotstxt.org/robotstxt.html
-
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://abaddonpestcontrol.netlify.app/sitemap.xml
-
-# Block access to admin or private areas (if any in future)
-Disallow: /admin/
-Disallow: /private/
-
-# Block JSON config files from indexing
-Disallow: /*.json
+Sitemap: https://abaddon.charmaweb.com/sitemap-index.xml

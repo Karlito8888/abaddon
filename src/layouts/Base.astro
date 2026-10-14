@@ -1,0 +1,150 @@
+---
+import { Font } from "astro:assets";
+import {
+  ADDRESS,
+  BRAND,
+  FACEBOOK_URL,
+  FDA_LICENSE,
+  GEO,
+  PHONES,
+  SERVICE_AREAS,
+  SITE_URL,
+  TIKTOK_URL,
+} from "../site";
+import "../styles/global.css";
+import "../styles/typography.css";
+
+interface Props {
+  title: string;
+  description: string;
+  /** 404 and other utility pages: robots noindex, no canonical, no social or structured data. */
+  noindex?: boolean;
+}
+
+const { title, description, noindex = false } = Astro.props;
+
+const SOCIAL_DESCRIPTION =
+  "FDA-licensed pest control services in Dasmariñas, Cavite. Specializing in termite control, cockroach, ant & rodent extermination. Free inspection. Call now!";
+const SHORT_NAME = BRAND.replace(" Inc.", "");
+const IMAGE = SITE_URL + "/logo512.png";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: BRAND,
+  image: IMAGE,
+  description:
+    "FDA-licensed pest control services specializing in termite control, cockroach, ant & rodent extermination in Dasmariñas, Cavite and Metro Manila areas.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: ADDRESS.street,
+    addressLocality: ADDRESS.locality,
+    addressRegion: ADDRESS.region,
+    postalCode: ADDRESS.postalCode,
+    addressCountry: ADDRESS.country,
+  },
+  geo: { "@type": "GeoCoordinates", latitude: GEO.lat, longitude: GEO.lng },
+  url: SITE_URL,
+  telephone: PHONES[0].e164,
+  priceRange: "$$",
+  openingHours: "Mo-Su 08:00-18:00",
+  serviceArea: SERVICE_AREAS.map((name) => ({ "@type": "City", name })),
+  hasCredential: {
+    "@type": "EducationalOccupationalCredential",
+    credentialCategory: "Professional License",
+    recognizedBy: { "@type": "Organization", name: "Food and Drug Administration Philippines" },
+    identifier: FDA_LICENSE,
+  },
+  makesOffer: [
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Termite Control Services",
+        description: "Pre-construction and post-construction termite treatment, termite baiting systems",
+      },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "General Pest Control",
+        description:
+          "Cockroach control, ants control, rats & rodents control, flies control, bees control, mosquito control, bed bugs control, flea & tick control, disinfection services",
+      },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Free Pest Inspection",
+        description: "Complimentary pest inspection and assessment services",
+      },
+      price: "0",
+      priceCurrency: "PHP",
+    },
+  ],
+  sameAs: [FACEBOOK_URL, TIKTOK_URL],
+};
+---
+
+<!doctype html>
+<html lang="en-PH">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <Font cssVariable="--font-primary" preload={[{ weight: 400, style: "normal", subset: "latin" }]} />
+    {
+      noindex ? (
+        <meta name="robots" content="noindex" />
+      ) : (
+        <>
+          <meta
+            name="keywords"
+            content="pest control services Philippines, termite control Cavite, pest control Dasmariñas, exterminator Metro Manila, integrated pest management Philippines, cockroach extermination, ant control, rodent control, mosquito control, licensed pest control operator"
+          />
+          <meta name="author" content={BRAND} />
+          <meta name="robots" content="index, follow" />
+          <meta name="geo.region" content="PH-CAV" />
+          <meta name="geo.placename" content={`Salitran, ${ADDRESS.locality}, ${ADDRESS.region}, Philippines`} />
+          <meta name="geo.position" content={`${GEO.lat};${GEO.lng}`} />
+          <meta name="ICBM" content={`${GEO.lat}, ${GEO.lng}`} />
+          <meta property="og:title" content={title} />
+          <meta property="og:description" content={SOCIAL_DESCRIPTION} />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content={SITE_URL} />
+          <meta property="og:image" content={IMAGE} />
+          <meta property="og:locale" content="en_PH" />
+          <meta property="og:site_name" content={SHORT_NAME} />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={title} />
+          <meta name="twitter:description" content={SOCIAL_DESCRIPTION} />
+          <meta name="twitter:image" content={IMAGE} />
+          <meta name="business:contact_data:street_address" content={ADDRESS.street} />
+          <meta name="business:contact_data:locality" content={ADDRESS.locality} />
+          <meta name="business:contact_data:region" content={ADDRESS.region} />
+          <meta name="business:contact_data:postal_code" content={ADDRESS.postalCode} />
+          <meta name="business:contact_data:country_name" content="Philippines" />
+          <link rel="canonical" href={SITE_URL} />
+          <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+        </>
+      )
+    }
+    <meta name="theme-color" content="#000000" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffd700" />
+    <meta name="msapplication-TileImage" content="/android-chrome-192x192.png" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

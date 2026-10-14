@@ -1,0 +1,59 @@
+---
+import { Picture } from "astro:assets";
+import aLogo from "../assets/logo/a-logo-opt.png";
+import abaddonLogo from "../assets/logo/abaddon-opt.png";
+import bLogo from "../assets/logo/b-logo-opt.png";
+// "?url" keeps the original file in dist/: Astro deletes originals only used through <Picture>/<Image>.
+import watermark from "../assets/logo/abaddon-logo-opt.png?url";
+import "./Hero.css";
+---
+
+<section id="hero" class="hero" style={`--hero-watermark: url(${watermark})`}>
+  <div class="hero__overlay"></div>
+  <div class="container hero__content">
+    <h1 class="hero__title">Abaddon Pest Control Services Inc.</h1>
+
+    <div class="hero__logo-sequence">
+      <Picture
+        src={aLogo}
+        formats={["webp"]}
+        alt="A"
+        class="hero__logo-item hero__logo-item--1"
+        width={429}
+        height={115}
+        loading="eager"
+      />
+      <Picture
+        src={abaddonLogo}
+        formats={["webp"]}
+        alt="Abaddon"
+        class="hero__logo-item hero__logo-item--2"
+        width={363}
+        height={363}
+        loading="eager"
+        fetchpriority="high"
+      />
+      <Picture
+        src={bLogo}
+        formats={["webp"]}
+        alt="B"
+        class="hero__logo-item hero__logo-item--3"
+        width={380}
+        height={132}
+        loading="eager"
+      />
+    </div>
+
+    <div class="hero__subtitle">
+      <ul class="hero__services-list">
+        <li>✓ Professional termite control &amp; treatment</li>
+        <li>✓ Cockroach, ants, rats &amp; rodents control</li>
+        <li>✓ Flies, bees, mosquito &amp; bed bugs control</li>
+        <li>✓ Flea &amp; tick control + disinfection services</li>
+        <li>✓ Integrated Pest Management (IPM) approach</li>
+        <li>✓ <strong>1 FREE INSPECTION</strong></li>
+        <li>✓ Licensed PCO serving Dasmariñas, Muntinlupa, Parañaque since 2020</li>
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,116 @@
+---
+import { Image } from "astro:assets";
+import whatsappIcon from "../assets/images/whatsapp.png";
+import viberIcon from "../assets/images/viber.png";
+import facebookIcon from "../assets/images/facebook.png";
+import tiktokIcon from "../assets/images/tiktok.png";
+import {
+  ADDRESS,
+  BRAND,
+  EMAIL,
+  FACEBOOK_URL,
+  FDA_LICENSE,
+  MAPS_URL,
+  NAV_LINKS,
+  PHONES,
+  TIKTOK_URL,
+  telHref,
+  viberHref,
+  whatsappHref,
+} from "../site";
+import "./Footer.css";
+
+const year = new Date().getFullYear();
+const social = [
+  { label: "Facebook", icon: facebookIcon, href: FACEBOOK_URL },
+  { label: "TikTok", icon: tiktokIcon, href: TIKTOK_URL },
+  { label: "WhatsApp Business", icon: whatsappIcon, href: whatsappHref(PHONES[0].e164) },
+  { label: "Viber", icon: viberIcon, href: viberHref(PHONES[0].e164) },
+];
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__col">
+        <h3 class="footer__col-title">{BRAND}</h3>
+        <p><strong>FDA Licensed PCO</strong></p>
+        <p>License: {FDA_LICENSE}</p>
+        <p>Specializing in Integrated Pest Management (IPM)</p>
+        <p>Serving Cavite &amp; Metro Manila since 2020</p>
+        <ul class="footer__links">
+          {NAV_LINKS.map((link) => <li><a href={link.href}>{link.name}</a></li>)}
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h3 class="footer__col-title">Our Services</h3>
+        <ul class="footer__services">
+          <li>Termite Control &amp; Treatment</li>
+          <li>Cockroach Control</li>
+          <li>Ants Control</li>
+          <li>Rats &amp; Rodents Control</li>
+          <li>Flies Control</li>
+          <li>Bees Control</li>
+          <li>Mosquito Control</li>
+          <li>Bed Bugs Control</li>
+          <li>Flea &amp; Tick Control</li>
+          <li>Disinfection Services</li>
+          <li>FREE Pest Inspection</li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h3 class="footer__col-title">Contact &amp; Service Areas</h3>
+        <p><strong>Business Address:</strong></p>
+        <p>{ADDRESS.street}</p>
+        <p>{ADDRESS.locality}, {ADDRESS.region} {ADDRESS.postalCode}</p>
+        {
+          PHONES.map((phone, i) => (
+            <p>
+              <strong>Phone {i + 1}:</strong> <a href={telHref(phone.e164)}>{phone.display}</a>
+            </p>
+          ))
+        }
+        <p>
+          <strong>Email:</strong> <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        </p>
+        <p><strong>Service Areas:</strong> Salitran, Dasmariñas, Muntinlupa, Parañaque, Las Piñas</p>
+        <p>
+          <a href={MAPS_URL} target="_blank" rel="noopener noreferrer">📍 View on Maps</a>
+        </p>
+      </div>
+      <div class="footer__col">
+        <h3 class="footer__col-title">Connect With Us</h3>
+        <div class="footer__social-links">
+          {
+            social.map(({ label, icon, href }) => (
+              <a href={href} target="_blank" rel="noopener noreferrer" class="footer__social-link">
+                <Image src={icon} alt={label.replace(" Business", "")} class="footer__social-icon" width={40} height={40} />
+                <span>{label}</span>
+              </a>
+            ))
+          }
+        </div>
+        <div class="footer__credentials">
+          <p>✓ FDA Licensed PCO</p>
+          <p>✓ IPM Certified</p>
+          <p>✓ FREE Inspection</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__bottom-content">
+        <p>&copy; {year} {BRAND} All Rights Reserved.</p>
+        <p>
+          FDA Licensed Pest Control Operator | License: {FDA_LICENSE} | Serving Dasmariñas, Cavite &amp; Metro Manila |
+          Integrated Pest Management Specialists
+        </p>
+        <div class="footer__keywords">
+          <span>Termite Control Cavite</span> •
+          <span>Pest Control Dasmariñas</span> •
+          <span>Exterminator Metro Manila</span> •
+          <span>IPM Philippines</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

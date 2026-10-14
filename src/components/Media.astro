@@ -1,0 +1,74 @@
+---
+import "./Media.css";
+
+const photos = Array.from({ length: 8 }, (_, i) => `/media/facebook/abaddon-${i + 1}.jpg`);
+const videos = Array.from({ length: 8 }, (_, i) => `/media/tiktok/vid-${i + 1}.mp4`);
+---
+
+<section class="media section-padding">
+  <div class="container">
+    <h2 class="section-title text-center">Our Work in Action</h2>
+
+    <div class="media__section">
+      <h3 class="media__section-title">Photos</h3>
+      <div class="media__photo-grid">
+        {
+          photos.map((src, i) => (
+            <button type="button" class="media__photo-item">
+              <img src={src} alt={`Abaddon pest control work, photo ${i + 1}`} loading="lazy" />
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="media__section">
+      <h3 class="media__section-title">Videos</h3>
+      <div class="media__video-grid">
+        {
+          videos.map((src, i) => (
+            <div class="media__video-item">
+              <div class="media__video-container">
+                <video
+                  class="media__video-thumbnail"
+                  src={src}
+                  controls
+                  preload="metadata"
+                  playsinline
+                  poster="/logo192.png"
+                  aria-label={`Abaddon pest control work, video ${i + 1}`}
+                />
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <dialog class="media__modal">
+      <div class="media__modal-content">
+        <button type="button" class="media__modal-close" aria-label="Close">✕</button>
+        <div class="media__modal-image">
+          <img class="media__modal-img" alt="" />
+        </div>
+      </div>
+    </dialog>
+  </div>
+</section>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>(".media__modal")!;
+  const big = dialog.querySelector("img")!;
+  document.querySelectorAll<HTMLImageElement>(".media__photo-item img").forEach((thumb) => {
+    thumb.parentElement!.addEventListener("click", () => {
+      big.src = thumb.src;
+      big.alt = thumb.alt;
+      dialog.showModal();
+    });
+  });
+  // Backdrop clicks target the dialog itself; the content box fills it, so inner clicks never match.
+  dialog.addEventListener("click", (e) => {
+    const target = e.target as Element;
+    if (target === dialog || target.closest(".media__modal-close")) dialog.close();
+  });
+</script>

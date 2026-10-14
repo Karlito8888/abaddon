@@ -1,0 +1,59 @@
+---
+import { Image, Picture } from "astro:assets";
+import aboutImage from "../assets/images/about-us-optimized.jpg";
+import fdaImage from "../assets/images/fda.png";
+import { FDA_LICENSE } from "../site";
+import "./About.css";
+---
+
+<section id="about" class="about section">
+  <div class="container">
+    <div class="about__grid">
+      <div class="about__image">
+        <Picture
+          src={aboutImage}
+          formats={["webp"]}
+          alt="Abaddon Pest Control team working"
+          width={800}
+          height={600}
+          loading="lazy"
+        />
+      </div>
+      <div class="about__content">
+        <h2 class="section-title">About Us</h2>
+        <p class="about__lead">
+          <strong>Founded in Cavite</strong>, Abaddon Pest Control Services Inc. is a
+          <strong> FDA-licensed Pest Control Operator (PCO)</strong>
+          dedicated to protecting homes and businesses across Metro Manila.
+          <br />
+          Our mission is to deliver effective, reliable, and environmentally responsible pest management solutions
+          using scientific approaches.
+        </p>
+        <p>
+          We specialize in <strong>Integrated Pest Management (IPM)</strong>, a comprehensive approach that combines
+          thorough inspections, targeted treatments, and preventative measures to ensure long-term pest control.
+          <br />
+          Our team of experienced technicians serves
+          <strong> Dasmariñas, Muntinlupa, Parañaque</strong> and surrounding areas with the highest level of service
+          and customer satisfaction.
+        </p>
+        <div class="about__credentials">
+          <span class="about__badge">FDA Licensed PCO</span>
+          <span class="about__badge">License #: {FDA_LICENSE}.</span>
+          <br />
+          <span class="about__badge"> Valid until Sept 2026</span>
+        </div>
+        <div class="about__fda-certification">
+          <Image
+            src={fdaImage}
+            alt="FDA Licensed Pest Control Operator Certificate"
+            class="about__fda-image"
+            width={217}
+            height={99}
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

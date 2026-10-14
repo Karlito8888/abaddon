@@ -1,86 +1,66 @@
-# AGENTS.md — abaddon-fix (abaddon-pest-control)
+# AGENTS.md — abaddon (abaddon-pest-control)
 
-Site vitrine one-page (React) pour une entreprise de désinsectisation/dératisation aux
-Philippines (Dasmariñas, Cavite — Metro Manila).
+One-page static site for Abaddon Pest Control Services Inc., a pest control operator in
+Dasmariñas, Cavite (Philippines). Live at `https://abaddon.charmaweb.com`, presented as a case
+study on `https://charmaweb.com/work/abaddon`.
 
-## Ce qui n'est PAS ici
+## What is NOT here
 
-| Quoi | Où |
+| What | Where |
 |---|---|
-| Règles de travail générales — vérifier avant d'affirmer, DRY/KISS/YAGNI, périmètre, échelle de doc officielle, outils obligatoires, git, accord explicite | `~/.omp/agent/RULES.md` |
-| Le poste, les graphes de code, les workflows | `~/.omp/agent/AGENTS.md` |
-| Faits durables du projet — versions, gate mesuré, dettes, points ouverts | `~/.omp/agent/bank/abaddon-fix.md` |
+| General working rules (verify before claiming, DRY/KISS/YAGNI, scope, docs ladder, mandatory tools, git, explicit agreement) | `~/.omp/agent/RULES.md` |
+| The workstation, the code graphs, the workflows | `~/.omp/agent/AGENTS.md` |
+| Durable project facts (versions, measured gate, debts, open items) | `~/.omp/agent/bank/abaddon.md` |
 
-## Ce qui existe
+## What exists
 
-Une seule page (`src/App.tsx`) empile sept sections dans l'ordre : `Header`, `Hero`,
-`Services`, `About`, `Media`, `Contact`, puis `Footer` hors du `<main>`. `Contact` liste
-adresse, deux numéros mobiles (appel/WhatsApp/Viber), e-mail, Facebook, TikTok et les zones
-desservies — c'est un site de contact/présentation, aucune logique métier (pas de formulaire,
-pas de backend, pas de panier).
+`src/pages/index.astro` stacks seven components in order: `Header`, then `<main>` with `Hero`,
+`Services`, `About`, `Media`, `Contact`, then `Footer`. Contact and presentation only: no form,
+no backend, no cookies. `src/pages/404.astro` is the not-found page (served by the Worker's
+`not_found_handling: "404-page"`).
 
-## Layout de `src/`
+## Layout
 
-- `components/<Nom>/` — un dossier par section (`Header`, `Hero`, `Services`, `About`,
-  `Media`, `Contact`, `Footer`), chacun `<Nom>.tsx` + `<Nom>.css` + `__tests__/<Nom>.test.tsx`
-  (Testing Library + Jest, style CRA par défaut — voir `Header.test.tsx` pour la convention :
-  mock des imports d'images, assertions sur rôle/texte visible).
-- `styles/` — `global.css`, `typography.css`, `variables.css` : tokens partagés, pas de
-  CSS-in-JS.
-- `assets/images/`, `assets/icons/` (SVG des types de nuisibles), `assets/logo/`.
+- `src/site.ts`: single source for brand and contact data (phones, e-mail, address, GPS,
+  Facebook, TikTok, FDA license, service areas, nav links) and the `telHref` / `whatsappHref` /
+  `viberHref` helpers. Never type a contact string elsewhere.
+- `src/layouts/Base.astro`: head (meta, Open Graph, icons, manifest), self-hosted Inter via the
+  Astro fonts API (`--font-primary`), JSON-LD `LocalBusiness` built from `site.ts`. No
+  `aggregateRating`: there is no verifiable review source, and Google refuses self-serving
+  ratings on `LocalBusiness`.
+- `src/components/<Name>.astro` + `<Name>.css` side by side. BEM class names, no CSS-in-JS.
+  The only client JavaScript is two inline scripts: the hamburger toggle (`Header`) and the
+  native `<dialog>` photo viewer (`Media`).
+- `src/styles/`: `global.css`, `typography.css`, `variables.css` (tokens).
+- `src/assets/`: logos, photos and SVG pest icons, all served through `astro:assets` (webp
+  generated at build). `Hero.css` reads the watermark through `--hero-watermark`, set from an
+  `?url` import, because Astro drops originals that are only referenced through `<Image>`.
+- `public/media/`: the 8 Facebook photos and 8 TikTok videos listed in `Media.astro`.
+- `public/_headers` and `public/_redirects`: security headers, immutable cache on `/_astro/*`,
+  vanity 301s (`/termite`, `/fb`, `/maps`, ...) supported natively by Workers static assets.
 
-## Stack — la plus ancienne du parc
+## Stack and gate
 
-React `^18.2.0` · `react-scripts` `5.0.1` (Create React App) · TypeScript **`^4.9.5`** — seul
-dépôt encore en TypeScript 4 (tous les autres sont en 5.9.x), et l'un des deux seuls encore
-sur React 18. Node **18** pinné (`.nvmrc` + `NODE_VERSION` dans `netlify.toml`).
-
-**Create React App est en fin de vie côté upstream** (maintenance minimale) — fait constaté,
-aucune migration proposée ici.
-
-## Gate
+Astro 7, TypeScript 6 (`@astrojs/check` refuses TypeScript 7), `@astrojs/sitemap`, `sharp`.
+Bun only. Dev and preview on port 4330 (4329 is CharmaWeb).
 
 ```
-tsc --noEmit && bun run lint && CI=true bun run test
+bun run check   # astro check && astro build
 ```
 
-⚠️ **`CI=true` est vital, pas décoratif.** `test` = `react-scripts test`, qui démarre en mode
-*watch* sans `CI=true` : un run non surveillé y reste bloqué **indéfiniment**, sans code de
-sortie. C'est le piège n°1 de ce dépôt.
+Pitfall: `astro preview` daemonizes (`astro preview stop` to end it) and serves `dist/`, so
+rebuild before re-testing.
 
-Le script mélange les runners : `gate` et `lint`/`test` passent par `bun run`, mais
-`build:netlify` (utilisé par Netlify) appelle `npm run type-check && npm run build`. Ici
-`package-lock.json` **est** committé — c'est npm, pas Bun, l'installeur réel ; `bun run
-<script>` ne fait qu'exécuter le script du `package.json`.
+## Deployment
 
-## Déploiement
+Push to `main` → `.github/workflows/deploy.yml` → `bun run check` → `wrangler deploy` → Worker
+`abaddon` (static assets only) on custom domain `abaddon.charmaweb.com`, Cloudflare account
+`charmaweb11@gmail.com`. Repository secret `CLOUDFLARE_API_TOKEN` (same token as CharmaWeb,
+`charmaweb-setup-deploy`), variable `CLOUDFLARE_ACCOUNT_ID`.
 
-`netlify.toml` : `publish = "build"`, `command = "npm run build:netlify"`, `NODE_VERSION 18`,
-redirection SPA catch-all (`/* → /index.html`), en-têtes de sécurité, et
-`skip_processing = true` (Netlify ne retouche pas les assets — CRA gère déjà son propre
-build). **Aucune CI GitHub.**
+The old Netlify deployment `abaddonpestcontrol.netlify.app` is not managed from this repo.
 
-## Pièges vérifiés
+## Copy rules
 
-- `src/assets/images/hero-bg.jpg` fait **0 octet** — asset cassé, présent tel quel.
-- `devDependencies.typescript-eslint-parser: ^22.0.0` est un nom de paquet obsolète
-  (remplacé depuis longtemps par `@typescript-eslint/parser`) avec une version inhabituelle ;
-  `node_modules` n'est pas installé dans ce dépôt, donc son installabilité n'est **pas**
-  vérifiée — à contrôler avant d'y toucher.
-- `Contact.tsx` porte de gros blocs JSX commentés (numéro FDA, intro longue) : ne pas les
-  « nettoyer » sans demander, c'est peut-être un texte gardé en réserve.
-
-## C'est la copie de référence
-
-`~/Bureau/abaddon` (même distant `Karlito8888/abaddon`) traîne 2 commits refusés en avance
-rapide depuis le 2026-08-20 ; **ce dépôt-ci est aligné sur `origin/main`** et porte en plus
-deux correctifs (`aspect-ratio` sur les images hero contre le CLS, audit Lighthouse). Il porte
-aussi une documentation propre au projet plus fournie (`COORDINATES.md`,
-`CSS_ARCHITECTURE.md`, `deploy.md`, `IMAGES_GUIDE.md`, `MEDIA_WORKFLOW.md`,
-`NETLIFY_DEBUG.md`, `REDEPLOY_GUIDE.md`, `SEO_RESEARCH.md`, `SETUP_GUIDE.md`,
-`SOCIAL_MEDIA.md`, `TYPOGRAPHY_GUIDE.md`) et `public/sitemap.xml` + `robots.txt`, absents de
-`abaddon`. Détail dans `~/.omp/agent/bank/abaddon-fix.md`.
-
-## Travail non commité
-
-2 fichiers seulement (`.gitattributes`, `.gitignore`) — dépôt globalement propre.
+English only. No em dash in user-facing text (full stop, colon or comma). Keep the FDA license
+number and the service areas exactly as in `site.ts`.
