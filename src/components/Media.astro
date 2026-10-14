@@ -2,7 +2,6 @@
 import "./Media.css";
 
 const photos = Array.from({ length: 8 }, (_, i) => `/media/facebook/abaddon-${i + 1}.jpg`);
-const videos = Array.from({ length: 8 }, (_, i) => `/media/tiktok/vid-${i + 1}.mp4`);
 ---
 
 <section class="media section-padding">
@@ -17,29 +16,6 @@ const videos = Array.from({ length: 8 }, (_, i) => `/media/tiktok/vid-${i + 1}.m
             <button type="button" class="media__photo-item" data-animate="reveal-stagger" data-delay={i % 4}>
               <img src={src} alt={`Abaddon pest control work, photo ${i + 1}`} loading="lazy" />
             </button>
-          ))
-        }
-      </div>
-    </div>
-
-    <div class="media__section">
-      <h3 class="media__section-title">Videos</h3>
-      <div class="media__video-grid">
-        {
-          videos.map((src, i) => (
-            <div class="media__video-item" data-animate="reveal-stagger" data-delay={i % 4}>
-              <div class="media__video-container">
-                <video
-                  class="media__video-thumbnail"
-                  src={src}
-                  controls
-                  preload="none"
-                  playsinline
-                  poster="/logo192.png"
-                  aria-label={`Abaddon pest control work, video ${i + 1}`}
-                />
-              </div>
-            </div>
           ))
         }
       </div>

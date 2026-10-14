@@ -50,7 +50,7 @@ no backend, no cookies. `src/pages/404.astro` is the not-found page (served by t
   `data-fx`. Hover lifts use `translate` / `scale`, never `transform`: Motion owns `transform`
   on revealed elements. Animations are always on, as on charmaweb.com (no
   `prefers-reduced-motion` handling, Charles's decision).
-- `public/media/`: the 8 Facebook photos and 8 TikTok videos listed in `Media.astro`.
+- `public/media/facebook/`: the 8 photos listed in `Media.astro`.
 - `public/_headers` and `public/_redirects`: security headers, immutable cache on `/_astro/*`,
   vanity 301s (`/termite`, `/fb`, `/maps`, ...) supported natively by Workers static assets.
 
