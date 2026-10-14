@@ -10,6 +10,8 @@ import "./Hero.css";
 const watermark = (await getImage({ src: logo, width: 400, format: "webp" })).src;
 ---
 
+{/* The watermark is the page's LCP image and is only discovered through CSS: preload it. */}
+<link rel="preload" as="image" href={watermark} fetchpriority="high" />
 <section id="hero" class="hero" style={`--hero-watermark: url(${watermark})`}>
   <div class="hero__overlay"></div>
   <canvas class="hero__canvas" aria-hidden="true"></canvas>
