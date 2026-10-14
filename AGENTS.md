@@ -58,8 +58,6 @@ Push to `main` → `.github/workflows/deploy.yml` → `bun run check` → `wrang
 `charmaweb11@gmail.com`. Repository secret `CLOUDFLARE_API_TOKEN` (same token as CharmaWeb,
 `charmaweb-setup-deploy`), variable `CLOUDFLARE_ACCOUNT_ID`.
 
-The old Netlify deployment `abaddonpestcontrol.netlify.app` is not managed from this repo.
-
 ## Copy rules
 
 English only. No em dash in user-facing text (full stop, colon or comma). Keep the FDA license
