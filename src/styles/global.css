@@ -37,7 +37,9 @@ body {
   font-family: var(--font-primary);
   line-height: var(--line-height-normal);
   color: var(--color-text-primary);
-  background-color: var(--color-bg-primary);
+  /* Dark, like what the fixed hero backdrop (Hero.css) renders over the page: contrast tools cannot
+     see that layer and would otherwise judge the 30% sections against white. */
+  background-color: var(--color-bg-dark);
   letter-spacing: var(--letter-spacing-base);
 
   /* Mobile-first: Base styles for mobile */

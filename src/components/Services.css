@@ -30,9 +30,11 @@
 }
 
 .services__dots button {
-  width: 10px;
-  height: 10px;
-  padding: 0;
+  /* 24px touch target, 10px visible dot: the background paints only inside the padding. */
+  width: 24px;
+  height: 24px;
+  padding: 7px;
+  background-clip: content-box;
   border: none;
   border-radius: var(--radius-full);
   background: var(--color-secondary-light-gray);

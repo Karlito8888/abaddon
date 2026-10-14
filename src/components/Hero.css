@@ -23,7 +23,8 @@
 
 .hero::before {
   content: "";
-  background: var(--gradient-hero);
+  /* The hero gradient was designed over the white page; keep that base inside the layer. */
+  background: var(--gradient-hero), var(--color-bg-primary);
 }
 
 .hero__overlay {
