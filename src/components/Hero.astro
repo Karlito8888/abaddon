@@ -1,11 +1,13 @@
 ---
-import { Picture } from "astro:assets";
+import { Picture, getImage } from "astro:assets";
 import aLogo from "../assets/logo/a-logo-opt.png";
 import abaddonLogo from "../assets/logo/abaddon-opt.png";
 import bLogo from "../assets/logo/b-logo-opt.png";
-// "?url" keeps the original file in dist/: Astro deletes originals only used through <Picture>/<Image>.
-import watermark from "../assets/logo/abaddon-logo-opt.png?url";
+import logo from "../assets/logo/abaddon-logo-opt.png";
 import "./Hero.css";
+
+// Watermark at 10% opacity behind the hero: a 400px webp is plenty.
+const watermark = (await getImage({ src: logo, width: 400, format: "webp" })).src;
 ---
 
 <section id="hero" class="hero" style={`--hero-watermark: url(${watermark})`}>
