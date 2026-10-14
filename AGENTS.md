@@ -43,7 +43,11 @@ no backend, no cookies. `src/pages/404.astro` is the not-found page (served by t
   `.hero__logo-item--2` box in 2.5 s, hold 1.2 s, then disperse into faint drifting dust with
   pointer parallax. When formed it sets `hero--formed` on the section, which reveals the real
   logo; without WebGL the CSS fade on `.hero__logo-item--2` plays at 4.5 s instead. Caps: 1400
-  grains (700 below 768 px), pixel ratio 1.5 (1 on mobile), additive blending, no MSAA.
+  grains (700 below 768 px), pixel ratio 1.5 (1 on mobile), additive blending, no MSAA. The
+  canvas is fixed, so the gate's off-screen pause never fires: the scene watches the hero
+  section itself and drops to half frame rate below it (Charles's choice, 2026-10-14; measured
+  59 → 30 draw calls/s). `renderer.setSize` runs only on resize; scroll re-reads the mark's
+  rect until the mark has formed.
 - Fixed backdrop (`Hero.css`): the hero gradient, overlay, particle canvas and the 80% logo
   watermark are `position: fixed; z-index: -1` and sit behind the whole page; no ancestor may
   create a stacking context. Every other section keeps a 30% background (Charles's choice,

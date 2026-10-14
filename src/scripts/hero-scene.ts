@@ -158,8 +158,12 @@ export async function init(canvas: HTMLCanvasElement): Promise<GateScene> {
   let elapsed = 0;
   let last: number | undefined;
   let formed = false;
+  // Below the hero the dust keeps drifting at half rate (Charles's choice, 2026-10-14): one frame in two is skipped.
+  let belowHero = false;
+  let skip = false;
 
   const frame = (now: number) => {
+    if (belowHero && (skip = !skip)) return;
     const dt = last === undefined ? 0 : Math.min((now - last) / 1000, 0.05);
     last = now;
     elapsed += dt;
@@ -199,9 +203,9 @@ export async function init(canvas: HTMLCanvasElement): Promise<GateScene> {
 
   await renderer.compileAsync(scene, camera);
 
-  // The canvas is fixed, so the gate's off-screen pause never fires: pause on the hero section
-  // instead. Below the hero the backdrop stays, the grains simply stop drifting.
-  const sceneApi: GateScene = {
+  // The canvas is fixed, so the gate's off-screen pause never fires: watch the hero section instead.
+  new IntersectionObserver(([entry]) => (belowHero = !entry.isIntersecting)).observe(hero);
+  return {
     start() {
       last = undefined;
       renderer.setAnimationLoop(frame);
@@ -210,6 +214,4 @@ export async function init(canvas: HTMLCanvasElement): Promise<GateScene> {
       renderer.setAnimationLoop(null);
     },
   };
-  new IntersectionObserver(([entry]) => (entry.isIntersecting ? sceneApi.start() : sceneApi.stop())).observe(hero);
-  return sceneApi;
 }
